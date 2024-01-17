@@ -1,0 +1,38 @@
+[
+  {
+    "id": "O_19",
+    "costMoney": 3,
+    "satisfaction": 0,
+    "costEnergy": 0,
+    "tension": -2
+  },
+  {
+    "id": "O_20",
+    "costMoney": 0,
+    "satisfaction": 0,
+    "costEnergy": 0,
+    "tension": -1
+  },
+  {
+    "id": "O_21",
+    "costMoney": 2,
+    "satisfaction": 0,
+    "costEnergy": 0,
+    "tension": -1
+  },
+  {
+    "id": "O_22",
+    "costMoney": 0,
+    "satisfaction": 0,
+    "costEnergy": 0,
+    "tension": -1
+  },
+  {
+    "id": "T_08",
+    "costMoney": 2,
+    "satisfaction": 0,
+    "costEnergy": 1,
+    "tension": -1
+  }
+]
+

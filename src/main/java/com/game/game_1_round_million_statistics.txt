@@ -1,0 +1,28 @@
+var player1 = new Player(1, 7, 4, FavouriteAction.O);
+var player2 = new Player(2, 8, 2, FavouriteAction.R);
+---
+пока без условия "совместно первую неделю"
+===============================
+Run count: 1000000
+WIN_WEDDING - 0.0% (0),
+BROKE_UP_AS_FRIENDS - 99.0037% (990037),
+BROKE_UP_AS_ENEMIES - 0.0% (0),
+ERROR - 0.9963% (9963)
+In average:
+ Player1: {11 🎂}, [0💥]		1💰		2 💪
+ Player2: {13 🎂}, [0💥]		2💰		0 💪
+event counter = 0, usedEventCards = 0
+
+ played options:
+BOTH_1: 6517529,
+SELF_PARTNER_1: 160226,
+SELF_SELF_2: 131375,
+PARTNER_PARTNER_2: 121129
+
+ error details:
+  could not find suitable card for player for SELF_SELF_2: 9963,
+[1, 7]: 8889,
+[1, 6]: 712,
+[1, 5]: 259,
+[1, 3]: 90,
+[1, 4]: 13

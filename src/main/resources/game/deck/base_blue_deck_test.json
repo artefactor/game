@@ -1,0 +1,219 @@
+[
+  {
+    "id": "O_01",
+    "costMoney": 0,
+    "satisfaction": 0,
+    "costEnergy": 1,
+    "tension": 0
+  },
+  {
+    "id": "O_02",
+    "costMoney": 3,
+    "satisfaction": 0,
+    "costEnergy": 2,
+    "tension": 0
+  },
+  {
+    "id": "O_03",
+    "costMoney": 0,
+    "satisfaction": 0,
+    "costEnergy": 1,
+    "tension": 1
+  },
+  {
+    "id": "O_04",
+    "costMoney": 0,
+    "satisfaction": 0,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "O_05",
+    "costMoney": 2,
+    "satisfaction": 1,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "O_06",
+    "costMoney": 0,
+    "satisfaction": 1,
+    "costEnergy": 1,
+    "tension": 1
+  },
+  {
+    "id": "O_07",
+    "costMoney": 0,
+    "satisfaction": 3,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "O_08",
+    "costMoney": 1,
+    "satisfaction": 4,
+    "costEnergy": 2,
+    "tension": 2
+  },
+  {
+    "id": "O_09",
+    "costMoney": 1,
+    "satisfaction": 1,
+    "costEnergy": 0,
+    "tension": 1
+  },
+  {
+    "id": "O_10",
+    "costMoney": 2,
+    "satisfaction": 0,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "T_01",
+    "costMoney": 1,
+    "satisfaction": 0,
+    "costEnergy": 1,
+    "tension": 2
+  },
+  {
+    "id": "T_02",
+    "costMoney": 0,
+    "satisfaction": 3,
+    "costEnergy": 1,
+    "tension": 2
+  },
+  {
+    "id": "T_03",
+    "costMoney": 1,
+    "satisfaction": 4,
+    "costEnergy": 1,
+    "tension": 0
+  },
+  {
+    "id": "T_04",
+    "costMoney": 2,
+    "satisfaction": 5,
+    "costEnergy": 2,
+    "tension": 0
+  },
+  {
+    "id": "T_05",
+    "costMoney": 0,
+    "satisfaction": 1,
+    "costEnergy": 1,
+    "tension": 0
+  },
+  {
+    "id": "T_06",
+    "costMoney": 0,
+    "satisfaction": 1,
+    "costEnergy": 0,
+    "tension": 1
+  },
+  {
+    "id": "T_07",
+    "costMoney": 0,
+    "satisfaction": 1,
+    "costEnergy": 1,
+    "tension": 0
+  },
+  {
+    "id": "H_01",
+    "costMoney": 0,
+    "satisfaction": 2,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "H_02",
+    "costMoney": 0,
+    "satisfaction": 2,
+    "costEnergy": 0,
+    "tension": 1
+  },
+  {
+    "id": "H_03",
+    "costMoney": 0,
+    "satisfaction": 2,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "H_04",
+    "costMoney": 0,
+    "satisfaction": 2,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "H_05",
+    "costMoney": 0,
+    "satisfaction": 2,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "R_01",
+    "costMoney": 2,
+    "satisfaction": 4,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "R_02",
+    "costMoney": 1,
+    "satisfaction": 1,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "R_03",
+    "costMoney": 3,
+    "satisfaction": 5,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "R_04",
+    "costMoney": 4,
+    "satisfaction": 5,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "R_05",
+    "costMoney": 3,
+    "satisfaction": 4,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "U_01",
+    "costMoney": 3,
+    "satisfaction": 4,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "U_02",
+    "costMoney": 3,
+    "satisfaction": 4,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "U_03",
+    "costMoney": 3,
+    "satisfaction": 4,
+    "costEnergy": 0,
+    "tension": 0
+  },
+  {
+    "id": "U_04",
+    "costMoney": 3,
+    "satisfaction": 4,
+    "costEnergy": 0,
+    "tension": 0
+  }
+]

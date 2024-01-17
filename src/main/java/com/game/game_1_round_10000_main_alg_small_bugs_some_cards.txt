@@ -1,0 +1,25 @@
+var player1 = new Player(1, 7, 4, FavouriteAction.O);
+var player2 = new Player(2, 8, 2, FavouriteAction.R);
+-------
+game_1_round_10000_main_alg_small_bugs_some_cards.txt
+---
+пока без условия "совместно первую неделю"
+===============================
+Run count: 10000
+WIN_WEDDING - 0.0% (0),
+BROKE_UP_AS_FRIENDS - 99.99% (9999),
+BROKE_UP_AS_ENEMIES - 0.0% (0),
+ERROR - 0.01% (1)
+In average:
+ Player1: {16 🎂}, [0💥]		7💰		3 💪
+ Player2: {18 🎂}, [0💥]		8💰		1 💪
+event counter = 0, usedEventCards = 0
+
+ played options:
+BOTH_1: 68884,
+SELF_PARTNER_1: 784,
+SELF_SELF_2: 325
+
+ error details:
+  could not find suitable card for player for PARTNER_PARTNER_2: 1,
+[1, 7]: 1

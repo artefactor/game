@@ -1,0 +1,10 @@
+ round, day : [6, 2]
+routineDeck, [32]: N_06, T_08, BB_12, O_04, B_09, T_05, B_05, H_09, O_02, T_07, B_08, BB_13, R_02, T_09, R_03, R_09, H_04, T_13, H_02, R_01, T_10, B_03, T_01, B_01, R_06, BB_15, H_06, U_01, R_07, R_08, B_07, O_09
+progressDeck, [0]:
+discardDeck, [6]: T_02, O_07, T_03, B_11, N_02, N_01
+discardedShuffledDeck, [2]: T_06, U_02
+player1DiscardDeck, [5]: N_05, O_03, O_01, N_04, B_02
+player2DiscardDeck, [5]: T_12, H_08, H_07, B_06, H_03
+player1Hand.cards, [6]: N_03, R_04, BB_14, U_03, T_04, O_06
+player2Hand.cards, [6]: O_08, B_10, H_01, H_05, B_04, R_05
+cardsOnTable.cardsOnTable, [1]: 5, H_01

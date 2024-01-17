@@ -1,0 +1,10 @@
+[
+  {
+    "round": 1,
+    "id": "1",
+    "name": "Влюбленность",
+    "oneRound": true,
+    "conditions": "none",
+    "usage": "calc_after_round_the_actions_during_round"
+  }
+]

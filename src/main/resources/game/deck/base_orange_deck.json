@@ -1,0 +1,142 @@
+[
+  {
+    "type": "YELLOW",
+    "sphere": "G",
+    "id": 49,
+    "name": "Управление гневом",
+    "customization": 2
+  },
+  {
+    "type": "YELLOW",
+    "sphere": "T",
+    "id": 51,
+    "name": "За компанию",
+    "customization": null
+  },
+  {
+    "type": "YELLOW",
+    "sphere": "T",
+    "id": 52,
+    "name": "Компанейский",
+    "customization": null
+  },
+  {
+    "type": "YELLOW",
+    "sphere": "V",
+    "id": 39,
+    "name": "Спонтанный",
+    "customization": 3
+  },
+  {
+    "type": "YELLOW",
+    "sphere": "V",
+    "id": 48,
+    "name": "Переговорщик",
+    "customization": null
+  },
+  {
+    "type": "YELLOW",
+    "sphere": "H",
+    "id": 47,
+    "name": "Бытовой Мастер",
+    "customization": null
+  },
+  {
+    "type": "YELLOW",
+    "sphere": "T",
+    "id": 42,
+    "name": "Темпераментный",
+    "customization": 1
+  },
+  {
+    "type": "YELLOW",
+    "sphere": "H",
+    "id": 41,
+    "name": "Доктор",
+    "customization": 2
+  },
+  {
+    "type": "YELLOW",
+    "sphere": "G",
+    "id": 44,
+    "name": "Муза",
+    "customization": 40
+  },
+  {
+    "type": "ORANGE",
+    "sphere": "H",
+    "id": 5,
+    "name": "Нужна помощь",
+    "customization": 2
+  },
+  {
+    "type": "ORANGE",
+    "sphere": "G",
+    "id": 9,
+    "name": "Герой",
+    "customization": null
+  },
+  {
+    "type": "YELLOW",
+    "sphere": "H",
+    "id": 38,
+    "name": "Эмпат",
+    "customization": null
+  },
+  {
+    "type": "ORANGE",
+    "sphere": "U",
+    "id": 21,
+    "name": "Не выношу скандал",
+    "customization": 2
+  },
+  {
+    "type": "ORANGE",
+    "sphere": "U",
+    "id": 23,
+    "name": "Переменчивое настроение",
+    "customization": 5
+  },
+  {
+    "type": "ORANGE",
+    "sphere": "T",
+    "id": 22,
+    "name": "Личное пространство",
+    "customization": 5
+  },
+  {
+    "type": "ORANGE",
+    "sphere": "L",
+    "id": 26,
+    "name": "Домосед",
+    "customization": 1
+  },
+  {
+    "type": "ORANGE",
+    "sphere": "L",
+    "id": 28,
+    "name": "Тусовщик",
+    "customization": 3
+  },
+  {
+    "type": "ORANGE",
+    "sphere": "T",
+    "id": 25,
+    "name": "Совместный вечер",
+    "customization": 2
+  },
+  {
+    "type": "ORANGE",
+    "sphere": "D",
+    "id": 14,
+    "name": "Раздражительность",
+    "customization": null
+  },
+  {
+    "type": "ORANGE",
+    "sphere": "H",
+    "id": 11,
+    "name": "Я тебе не служанка",
+    "customization": 2
+  }
+]

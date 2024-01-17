@@ -1,0 +1,66 @@
+[
+  {
+    "round": 1,
+    "id": "1",
+    "name": "Влюбленность",
+    "oneRound": true,
+    "conditions": "none",
+    "usage": "calc_after_round_the_actions_during_round"
+  },
+  {
+    "round": 2,
+    "id": "2",
+    "name": "Проявление характера",
+    "oneRound": false,
+    "conditions": "none",
+    "usage": "do_action_before_round"
+  },
+  {
+    "round": 3,
+    "id": "3b",
+    "name": "Раскрытие характера",
+    "oneRound": false,
+    "conditions": "none",
+    "usage": "do_action_before_round"
+  },
+  {
+    "round": 4,
+    "id": "4",
+    "name": "Сближение",
+    "oneRound": false,
+    "conditions": "none",
+    "usage": "do_action_before_round"
+  },
+  {
+    "round": 5,
+    "id": "5a",
+    "name": "Стремление к независимости",
+    "oneRound": true,
+    "conditions": "diff_satisfaction",
+    "usage": "calc_after_round_the_actions_during_round"
+  },
+  {
+    "round": 6,
+    "id": "6",
+    "name": "Развитие отношений",
+    "oneRound": false,
+    "conditions": "none",
+    "usage": "end_of_round"
+  },
+  {
+    "round": 7,
+    "id": "7",
+    "name": "Серьезный разговор",
+    "oneRound": true,
+    "conditions": "none",
+    "usage": "do_action_before_round"
+  },
+  {
+    "round": 8,
+    "id": "8",
+    "name": "Свадьба или расставание",
+    "oneRound": false,
+    "conditions": "none",
+    "usage": "end_of_round"
+  }
+]

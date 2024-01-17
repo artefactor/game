@@ -1,0 +1,87 @@
+// TODO OO: 1) проверить и пофиксить результаты playCards
+// TODO OO: 1) пофиксить тесты
+// TODO OO: 1) пофиксить напряг с carLocation when car repair
+// TODO OO: 1) пофиксить запуск application  (чтобы карта игралась на того кто ее играет)
+// TODO OO: 1) проверить что при запуске учитываются оранжевые карты application  (почему-то одна карта не считалась)
+
+
+1 SELF_SELF_2       A: 1 B: 2
+normal play cards 	    N_01 for 1	N_02 for 2
+-
+options if card 1 self	   1 for 1	N_02 for 2
+                        N_01 for 1	N_02 for 2
+options if card 1 self_both	  9 for 1   	N_02 for 2
+                              9 for 1
+                              N_01 for 1	N_02 for 2
+options if card 1 partner	 N_01 for 1	13 for 2
+                           N_01 for 1	N_02 for 2
+options if card 2 self  	 1 for 2	N_01 for 1
+                        N_01 for 1	N_02 for 2
+options if card 2 self_both	 9 for 2	N_01 for 1
+                             9 for 2
+                          N_01 for 1	N_02 for 2
+options if card 2 partner	 N_02 for 2	13 for 1
+                           N_01 for 1	N_02 for 2
+N_01
+N_01
+-------------------
+2 PARTNER_PARTNER_2 A: 1 B: 2
+normal play cards 	B_05 for 2	T_13 for 1
+-
+options if card 1 self	 1 for 1	B_05 for 2
+B_05 for 2	T_13 for 1
+options if card 1 self_both	 9 for 1	B_05 for 2
+9 for 1
+B_05 for 2	T_13 for 1
+options if card 1 partner	 T_13 for 1	13 for 2
+B_05 for 2	T_13 for 1
+options if card 2 self	 1 for 2	B_05 for 1
+B_05 for 2	T_13 for 1
+options if card 2 self_both	 9 for 2	B_05 for 1
+9 for 2
+B_05 for 2	T_13 for 1
+options if card 2 partner	 T_13 for 2	13 for 1
+B_05 for 2	T_13 for 1
+T_13
+B_05
+-------------------
+3 SELF_PARTNER_2 A: 1 B: 2
+normal play cards 	O_03 for 1	B_06 for 2
+-
+options if card 1 self	 1 for 1	B_06 for 2
+O_03 for 1	B_06 for 2
+options if card 1 self_both	 9 for 1	B_06 for 2
+9 for 1
+O_03 for 1	B_06 for 2
+options if card 1 partner	 O_03 for 1	13 for 2
+O_03 for 1	B_06 for 2
+options if card 2 self	 1 for 2	B_06 for 1
+O_03 for 1	B_06 for 2
+options if card 2 self_both	 9 for 2	B_06 for 1
+9 for 2
+O_03 for 1	B_06 for 2
+options if card 2 partner	 O_03 for 2	13 for 1
+O_03 for 1	B_06 for 2
+O_03
+B_06
+-------------------
+4 SELF_PARTNER_2 A: 2 B: 1
+normal play cards 	T_07 for 2	B_07 for 1
+-
+options if card 1 self	 1 for 1	T_07 for 2
+T_07 for 2	B_07 for 1
+options if card 1 self_both	 9 for 1	T_07 for 2
+9 for 1
+T_07 for 2	B_07 for 1
+options if card 1 partner	 B_07 for 1	13 for 2
+T_07 for 2	B_07 for 1
+options if card 2 self	 1 for 2	T_07 for 1
+T_07 for 2	B_07 for 1
+options if card 2 self_both	 9 for 2	T_07 for 1
+9 for 2
+T_07 for 2	B_07 for 1
+options if card 2 partner	 B_07 for 2	13 for 1
+T_07 for 2	B_07 for 1
+B_07
+T_07
+-------------------

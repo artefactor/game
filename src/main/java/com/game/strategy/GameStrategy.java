@@ -22,7 +22,7 @@ import com.game.model.OrangeCard;
 import com.game.model.Player;
 import com.game.model.Players;
 import com.game.model.Restriction;
-import org.apache.commons.collections.ListUtils;
+import org.apache.commons.collections4.ListUtils;
 
 public class GameStrategy {
 

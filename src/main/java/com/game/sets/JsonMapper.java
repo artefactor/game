@@ -106,7 +106,7 @@ public class JsonMapper {
 
     public static File getOrCreateFileJson(String jsonFileName) {
         try {
-            Path resourceDirectory = Paths.get("/Users/user/code/raw-data-bi/bi/bi-ui/src/main", "resources"
+            Path resourceDirectory = Paths.get("/Users/user/code/game/src/main", "resources"
                 , "game", "deck"
             );
             String absolutePath = resourceDirectory.toFile().getAbsolutePath();

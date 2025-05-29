@@ -1,26 +1,42 @@
 package com.branka;
 
-import static com.branka.CombinationChecker.printCountMap;
+import static com.branka.CombinationChecker.choicesCountMap;
+import static com.branka.CombinationChecker.printCountMapDividedInPercent;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class CombinationChecker1 {
+public class MainCombinationIterator {
 
-    // Класс для представления карточки
-    static class Card {
+    public static void main(String[] args) throws IOException {
+        int N = 8;
+        List<Card> deck = initializeDeck(N);
+        CombinationChecker.loadSubstringsFromFile("substrings.txt");
+        CombinationChecker.initializeCountMap();
+        int K = 6; // Размер комбинации
+        System.out.println("Начало подсчета валидных комбинаций...");
+        long startTime = System.currentTimeMillis();
+        long validCombinations = countValidCombinations(deck, K);
+        long endTime = System.currentTimeMillis();
+        double elapsedSeconds = (endTime - startTime) / 1000.0;
+        System.out.println("Подсчет завершен.");
 
-        char letter;
+        long totalCombinations = combination(N, K);
+        System.out.println("Всего комбинаций: " + totalCombinations);
+        System.out.println("Валидных комбинаций: " + validCombinations);
+        System.out.println("Вероятность наличия вариантов комбинаций: ");
+        printCountMapDividedInPercent(CombinationChecker.choicesCountMap, totalCombinations);
+        var sum = choicesCountMap.values().stream().reduce((a, b) -> new AtomicInteger(a.addAndGet(b.intValue()))).get()
+            .longValue();
+        assert sum == totalCombinations;
+        System.out.println("");
+        System.out.printf("Время выполнения: %.2f секунд%n", elapsedSeconds);
 
-        Card(char letter) {
-            this.letter = letter;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(letter);
-        }
+        var allCombos = CombinationChecker.substringsCountMap.values().stream().reduce((a, b)-> a+ b).get();
+        printCountMapDividedInPercent(CombinationChecker.substringsCountMap, allCombos);
     }
 
     /**
@@ -109,25 +125,6 @@ public class CombinationChecker1 {
         return CombinationChecker.checkCombination(combination);
     }
 
-    public static void main(String[] args) {
-        int N = 7;
-        List<Card> deck = initializeDeck(N);
-        int K = 6; // Размер комбинации
-        System.out.println("Начало подсчета валидных комбинаций...");
-        long startTime = System.currentTimeMillis();
-        long validCombinations = countValidCombinations(deck, K);
-        long endTime = System.currentTimeMillis();
-        double elapsedSeconds = (endTime - startTime) / 1000.0;
-        System.out.println("Подсчет завершен.");
-
-        long totalCombinations = combination(N, K);
-        System.out.println("Всего комбинаций: " + totalCombinations);
-        System.out.println("Валидных комбинаций: " + validCombinations);
-        System.out.printf("Время выполнения: %.2f секунд%n", elapsedSeconds);
-
-        printCountMap();
-    }
-
     /**
      * Метод для инициализации колоды из карточек. Вы можете настроить буквы по своему усмотрению.
      *
@@ -136,7 +133,7 @@ public class CombinationChecker1 {
     private static List<Card> initializeDeck(int count) {
         List<Card> deck = new ArrayList<>();
         // Пример: добавим 50 карточек с буквами от 'A' до 'Z' и далее повторим
-        char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+        char[] letters = "ABCDDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
         for (int i = 0; i < count; i++) {
             char letter = letters[i % letters.length];
             deck.add(new Card(letter));

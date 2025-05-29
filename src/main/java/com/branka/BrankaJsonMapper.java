@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -19,17 +20,37 @@ public class BrankaJsonMapper {
     enum Option {
         WRITE_BRANKA_DECK,
         READ_BRANKA_DECK,
+        READ_AND_CONVERT_TO_TYPE_ONLY_BRANKA_DECK,
+        READ_AND_CONVERT_TO_TYPE_AND_TONES_BRANKA_DECK,
     }
 
     public static void main(String[] args) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        Option option = Option.READ_BRANKA_DECK;
+        Option option = Option.READ_AND_CONVERT_TO_TYPE_ONLY_BRANKA_DECK;
         switch (option) {
             case WRITE_BRANKA_DECK:
-                write(objectMapper, BrankaCardsTestSet.cardsSet, "branka_deck.json"); break;
+                write(objectMapper, BrankaCardsTestSet.cardsSet, "branka_deck.json");
+                break;
             case READ_BRANKA_DECK:
-               StatisticsHelper.countUnique(readBrankaDeck(objectMapper, "branka_deck.json")); break;
+                StatisticsHelper.countUnique(readBrankaDeck(objectMapper, "branka_deck.json"));
+                break;
+            case READ_AND_CONVERT_TO_TYPE_ONLY_BRANKA_DECK: {
+                //                var readDeck = BrankaCardsTestSet.cardsSet;
+                var readDeck = readBrankaDeck(objectMapper, "branka_deck.json");
+                var convertedDeck = readDeck.stream().map(ToCardConverter.typeConvert()).collect(Collectors.toList());
+                write(objectMapper, convertedDeck, "branka_converted_type_deck.json");
+            }
+            break;
+            case READ_AND_CONVERT_TO_TYPE_AND_TONES_BRANKA_DECK: {
+                //                var readDeck = BrankaCardsTestSet.cardsSet;
+                var readDeck = readBrankaDeck(objectMapper, "branka_deck.json");
+                var convertedDeck =
+                    readDeck.stream().map(ToCardConverter.typeAndToneConvert()).collect(Collectors.toList());
+                write(objectMapper, convertedDeck, "branka_converted_type_tone_deck.json");
+            }
+            break;
+
         }
     }
 

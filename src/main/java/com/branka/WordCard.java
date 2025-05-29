@@ -71,8 +71,4 @@ public class WordCard {
         ADDITIONAL,
     }
 
-    //    @JsonIgnore
-    //    boolean isActive;
-
-
 }

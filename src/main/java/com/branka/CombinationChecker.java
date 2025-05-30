@@ -21,13 +21,11 @@ public class CombinationChecker {
      * @param filename имя файла с подстроками
      * @throws IOException если файл не найден или возникает ошибка чтения
      */
-    static void loadSubstringsFromFile(String filename) throws IOException {
-        Path resourceDirectory = Paths.get("/Users/user/code/game/src/main", "resources"
-            , "branka"
-        );
+    static List<String> loadSubstringsFromFile(String filename) throws IOException {
+        var resourceDirectory = ResourceDirectory.get_RESOURCE_DIRECTORY();
         String absolutePath = resourceDirectory.toFile().getAbsolutePath();
         var file = new File(absolutePath, filename);
-
+        List<String> substrings = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -35,10 +33,11 @@ public class CombinationChecker {
                 if (!line.isEmpty()) {
                     // Убедимся, что подстрока отсортирована
                     String sorted = sortString(line);
-                    SUBSTRINGS.add(sorted);
+                    substrings.add(sorted);
                 }
             }
         }
+        return substrings;
     }
 
     /**
@@ -57,26 +56,12 @@ public class CombinationChecker {
     static final Map<String, Integer> substringsCountMap = new HashMap<>();
     static final Map<Integer, AtomicInteger> choicesCountMap = new HashMap<>();
 
-    // Предопределённый список подстрок
-    private static final List<String> SUBSTRINGS = new ArrayList<>();
-
-    //<editor-fold desc="predefined">
-    //    private static final List<String> SUBSTRINGS = Arrays.asList("ABH", "A", "AD", "ADD", "AH");
-    //    static {
-    //        // Инициализируем карту нулями для каждой подстроки
-    //        for (String substr : SUBSTRINGS) {
-    //            countMap.put(substr, 0);
-    //        }
-    //    }
-    //</editor-fold>
-
-
     /**
      * Инициализирует countMap нулями для каждой подстроки.
      */
-    static void initializeCountMap() {
+    static void initializeCountMap(List<String> substrings) {
         substringsCountMap.clear();
-        for (String substr : SUBSTRINGS) {
+        for (String substr : substrings) {
             substringsCountMap.put(substr, 0);
         }
     }
@@ -85,14 +70,15 @@ public class CombinationChecker {
      * Проверяет комбинацию и обновляет countMap.
      *
      * @param combination отсортированный и валидный список символов
+     * @param substrings
      */
-    static boolean checkCombination(List<Character> combination) {
+    static boolean checkCombination(List<Character> combination, List<String> substrings) {
         System.out.print(combination);
         // Подсчитываем частоту каждого символа в комбинации
         Map<Character, Integer> combinationCount = countCharacters(combination);
         int choicesCount = 0;
         // Обрабатываем каждую подстроку
-        for (String substr : SUBSTRINGS) {
+        for (String substr : substrings) {
             // Подсчитываем частоту символов в подстроке
             Map<Character, Integer> substrCount = countCharacters(substr);
             // Проверяем, можно ли составить подстроку из комбинации
@@ -189,30 +175,40 @@ public class CombinationChecker {
 
     static void printCountMapDividedInPercent(Map<?, ? extends Number> substringsCountMap1, long total) {
         substringsCountMap1.forEach(
-            (key, value) -> System.out.println(key + " -\t" + value + "\t ( " + (value.longValue() * 100 / total) + " % )"));
+            (key, value) -> System.out.println(
+                key + " -\t" + value + "\t ( " + (value.longValue() * 100 / total) + " % )"));
     }
 
     // Пример использования
     public static void main(String[] args) {
+        // Предопределённый список подстрок
+        final List<String> substrings = Arrays.asList("ABH", "A", "AD", "ADD", "AH");
+
+        // Инициализируем карту нулями для каждой подстроки
+        for (String substr : substrings) {
+            substringsCountMap.put(substr, 0);
+        }
+
         // Пример 1
+        System.out.println("Пример 1:");
         List<Character> combination1 = Arrays.asList('A', 'C', 'D', 'D', 'E');
-        checkCombination(combination1);
-        System.out.println("После первой комбинации:");
+        checkCombination(combination1, substrings);
         printCountMap(substringsCountMap);
         // Сброс карты для следующего примера
-        resetCountMap();
+        resetCountMap(substrings);
+        System.out.println("=======================");
         // Пример 2
+        System.out.println("Пример 2:");
         List<Character> combination2 = Arrays.asList('A', 'D', 'D', 'D', 'E', 'H', 'K');
-        checkCombination(combination2);
-        System.out.println("\nПосле второй комбинации:");
+        checkCombination(combination2, substrings);
         printCountMap(substringsCountMap);
     }
 
     /**
      * Сбрасывает countMap к нулевым значениям.
      */
-    private static void resetCountMap() {
-        for (String substr : SUBSTRINGS) {
+    private static void resetCountMap(List<String> substrings) {
+        for (String substr : substrings) {
             substringsCountMap.put(substr, 0);
         }
     }

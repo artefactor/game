@@ -14,12 +14,12 @@ public class MainCombinationIterator {
     public static void main(String[] args) throws IOException {
         int N = 8;
         List<Card> deck = initializeDeck(N);
-        CombinationChecker.loadSubstringsFromFile("substrings.txt");
-        CombinationChecker.initializeCountMap();
+        var substrings = CombinationChecker.loadSubstringsFromFile("substrings.txt");
+        CombinationChecker.initializeCountMap(substrings);
         int K = 6; // Размер комбинации
         System.out.println("Начало подсчета валидных комбинаций...");
         long startTime = System.currentTimeMillis();
-        long validCombinations = countValidCombinations(deck, K);
+        long validCombinations = countValidCombinations(deck, K, substrings);
         long endTime = System.currentTimeMillis();
         double elapsedSeconds = (endTime - startTime) / 1000.0;
         System.out.println("Подсчет завершен.");
@@ -42,11 +42,12 @@ public class MainCombinationIterator {
     /**
      * Метод для подсчета количества валидных комбинаций.
      *
-     * @param deck Список из 50 карточек.
-     * @param K    Размер комбинации (в данном случае 6).
+     * @param deck       Список из 50 карточек.
+     * @param K          Размер комбинации (в данном случае 6).
+     * @param substrings
      * @return Количество комбинаций, прошедших проверку.
      */
-    public static long countValidCombinations(List<Card> deck, int K) {
+    public static long countValidCombinations(List<Card> deck, int K, List<String> substrings) {
         long validCount = 0;
         int N = deck.size();
         // Индексы для генерации комбинаций
@@ -66,7 +67,7 @@ public class MainCombinationIterator {
             // Сортируем буквы по алфавиту
             Collections.sort(currentCombination);
             // Вызываем функцию проверки
-            if (checkCombination(currentCombination)) {
+            if (checkCombination(currentCombination, substrings)) {
                 validCount++;
             }
             processed++;
@@ -119,10 +120,11 @@ public class MainCombinationIterator {
      * Функция проверки комбинации. Здесь вы реализуете логику проверки.
      *
      * @param combination Отсортированная по алфавиту комбинация букв.
+     * @param substrings
      * @return true, если комбинация валидна, иначе false.
      */
-    private static boolean checkCombination(List<Character> combination) {
-        return CombinationChecker.checkCombination(combination);
+    private static boolean checkCombination(List<Character> combination, List<String> substrings) {
+        return CombinationChecker.checkCombination(combination, substrings);
     }
 
     /**

@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 public class WordCard {
 
     private Integer id;
+    private Character group;
+    private Character groupTone;
     private Tone tone;
     private Type type;
     private Integer option;

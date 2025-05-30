@@ -5,8 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,9 +23,9 @@ public class BrankaJsonMapper {
     }
 
     public static void main(String[] args) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
+        var objectMapper = new ObjectMapper();
 
-        Option option = Option.READ_AND_CONVERT_TO_TYPE_ONLY_BRANKA_DECK;
+        Option option = Option.READ_AND_CONVERT_TO_TYPE_AND_TONES_BRANKA_DECK;
         switch (option) {
             case WRITE_BRANKA_DECK:
                 write(objectMapper, BrankaCardsTestSet.cardsSet, "branka_deck.json");
@@ -91,10 +89,7 @@ public class BrankaJsonMapper {
 
     public static File getOrCreateFileJson(String jsonFileName) {
         try {
-            Path resourceDirectory = Paths.get("/Users/user/code/game/src/main", "resources"
-                , "branka", "deck"
-            );
-            String absolutePath = resourceDirectory.toFile().getAbsolutePath();
+            String absolutePath = ResourceDirectory.get_RESOURCE_DIRECTORY("deck").toFile().getAbsolutePath();
             var file = new File(absolutePath, jsonFileName);
             if (!file.exists()) {
                 file.createNewFile();

@@ -24,19 +24,19 @@ public class BrankaCardsTestSet {
     }
 
     public static List<WordCard> cardsSet = of(
-        new WordCard(1, Tone.RED, Type.ГЛАГОЛ, 1, "name", of(
+        new WordCard(1, 'A','A',Tone.RED, Type.ГЛАГОЛ, 1, "name", of(
             add(Type.НАРЕЧИЕ),
             add(Type.КОГО, Type.ЧТО),
             add(Type.ЧЕМ)
         ), addMulti(Type.ОБСТОЯТЕЛЬСТВО)
         ),
-        new WordCard(1, Tone.RED, Type.ГЛАГОЛ, 1, "name", of(
+        new WordCard(1,'A','B', Tone.RED, Type.ГЛАГОЛ, 1, "name", of(
             add(Type.НАРЕЧИЕ),
             add(Type.НАД_КЕМ, Type.НАД_ЧЕМ),
             add(Type.ЧЕМ)
         ), addMulti(Type.ОБСТОЯТЕЛЬСТВО)
         ),
-        new WordCard(1, Tone.RED, Type.ГЛАГОЛ, 1, "name", of(
+        new WordCard(1,'A','C', Tone.RED, Type.ГЛАГОЛ, 1, "name", of(
             add(Type.НАРЕЧИЕ),
             add(Type.КОМУ, Type.КАКОМУ),
             add(Type.ЧЕМ)

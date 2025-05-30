@@ -1,5 +1,91 @@
-ABH
+-- P
+-- PV
+--
+-- S
+-- SU
+-- SU*
+--
+-- U
+-- U*
+--
+-- 7
+-- 7V
+--
+-- X
+-- XV
+--
 A
-AD
-ADD
-AH
+AN
+AP
+APV
+AБ
+ANБ
+APБ
+APVБ
+--
+D
+DV
+D7
+D7V
+DБ
+DVБ
+D7Б
+D7VБ
+--
+F
+FV
+FБ
+--
+H
+HS
+HSU
+HSU*
+HU
+HU*
+HX
+HXV
+HXS
+HXVS
+HXSU
+HXVSU
+HXSU*
+HXVSU*
+HUX
+HUXV
+HU*X
+HU*XV
+--
+I
+IS
+ISU
+ISU*
+IU
+IU*
+IБ
+IБS
+IБSU
+IБSU*
+IUБ
+IU*Б
+--
+J
+JX
+JXV
+--
+K
+KБ
+KX
+KXV
+KБX
+KБXV
+--
+L
+LБ
+L7
+L7V
+LБ7
+LБ7V
+--
+M
+MV
+--

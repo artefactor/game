@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -46,7 +44,10 @@ public class CombinationChecker {
      * @param s исходная строка
      * @return отсортированная строка
      */
-    private static String sortString(String s) {
+     static String sortString(String s) {
+         if (s.startsWith("--")){
+             return s;
+         }
         char[] chars = s.toCharArray();
         Arrays.sort(chars);
         return new String(chars);
@@ -65,7 +66,7 @@ public class CombinationChecker {
             substringsCountMap.put(substr, 0);
         }
     }
-
+    static int k = 0;
     /**
      * Проверяет комбинацию и обновляет countMap.
      *
@@ -73,11 +74,14 @@ public class CombinationChecker {
      * @param substrings
      */
     static boolean checkCombination(List<Character> combination, List<String> substrings) {
-        System.out.print(combination);
+        boolean print = !true;
+        if (print)        System.out.print(k++ + "\t");
+        if (print) {System.out.print(combination);}
         // Подсчитываем частоту каждого символа в комбинации
         Map<Character, Integer> combinationCount = countCharacters(combination);
         int choicesCount = 0;
         // Обрабатываем каждую подстроку
+
         for (String substr : substrings) {
             // Подсчитываем частоту символов в подстроке
             Map<Character, Integer> substrCount = countCharacters(substr);
@@ -102,7 +106,7 @@ public class CombinationChecker {
                     int available = combinationCount.getOrDefault(ch, 0);
                     ways *= combinationCount(available, required);
                 }
-                System.out.printf(" '%s':%s", substr, ways);
+                if (print)        System.out.printf(" '%s':%s", substr, ways);
                 // Обновляем countMap, приводя к int (предполагается, что значение не превышает Integer.MAX_VALUE)
                 substringsCountMap.put(substr, substringsCountMap.get(substr) + (int) ways);
             }
@@ -112,8 +116,8 @@ public class CombinationChecker {
         res.incrementAndGet();
 
         boolean anyOption = choicesCount > 0;
-        System.out.print(";  choices:" + choicesCount + " = " + anyOption);
-        System.out.println();
+        if (print)        System.out.print(";  choices:" + choicesCount + " = " + anyOption);
+        if (print)        System.out.println();
         return anyOption;
     }
 

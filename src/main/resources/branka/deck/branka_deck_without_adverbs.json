@@ -102,42 +102,6 @@
   {"id": "83", "group": "Д", "groupTone": "Ё", "type":"НАРЕЧИЕ","name":"МЯГКО"	,  "tone":"GREEN"	    ,"additions":[{"list":["СТЕПЕНЬ"]}]},
   {"id": "84", "group": "Д", "groupTone": "Ё", "type":"НАРЕЧИЕ","name":"ТАКТИЧНО"	,"tone":"GREEN"	    ,"additions":[{"list":["СТЕПЕНЬ"]}]},
   {"id": "85", "group": "Д", "groupTone": "Ё", "type":"НАРЕЧИЕ","name":"НЕЖНО" 	,  "tone":"GREEN"	    ,"additions":[{"list":["СТЕПЕНЬ"]}]},
-  {"id": "86", "group": "Д", "groupTone": "ё", "type":"НАРЕЧИЕ","name":"НЕЙТРАЛЬНО","tone":"NEUTRAL" ,"additions":[{"list":["СТЕПЕНЬ"]}]},
-
-  {"id": "87", "group": "Ж", "groupTone": "Ж", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"СКВОЗЬ ЗУБЫ", 	"tone":"RED", "option":	9},
-
-  {"id": "88", "group": "ж", "groupTone": "ж", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"ВНЕЗАПНО"	,"tone":"NEUTRAL"	, "option":8},
-
-  {"id": "89", "group": "З", "groupTone": "З", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"С НАЖИМОМ" ,	"tone":"RED", "option":	7},
-  {"id": "90", "group": "З", "groupTone": "з", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"С ЮМОРОМ" 	,"tone":"GREEN", "option":	7},
-
-  {"id": "91", "group": "И", "groupTone": "И", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"ИЗ ПРИНЦИПА" ,	"tone":"NEUTRAL", "option":	6},
-
-  {"id": "92", "group": "и", "groupTone": "и", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"В ИНТОНАЦИЯХ" ,	"tone":"NEUTRAL"	, "option":5},
-
-  {"id": "93", "group": "Й", "groupTone": "Й", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"В ОТВЕТ" 	,"tone":"NEUTRAL"	, "option":4	,"additions":[{"list":["НА_ЧТО"]}]},
-  {"id": "94", "group": "Й", "groupTone": "Й", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"В ОТВЕТ" 	,"tone":"NEUTRAL"	, "option":4	,"additions":[{"list":["НА_ЧТО"]}]},
-  {"id": "95", "group": "Й", "groupTone": "Й", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"В ОТВЕТ" 	,"tone":"NEUTRAL"	, "option":4	,"additions":[{"list":["НА_ЧТО"]}]},
-
-  {"id": "96", "group": "Л", "groupTone": "Л", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"ЧТОБЫ СВЕСТИ К АБСУРДУ", "tone":"YELLOW"	, "option":3	,"additions":[{"list":["ЧТО"]}]},
-  {"id": "97", "group": "Л", "groupTone": "л", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"ЧТОБЫ СГЛАДИТЬ",	"tone":"GREEN"	, "option":3		,"additions":[{"list":["ЧТО"]}]},
-  {"id": "98", "group": "Л", "groupTone": "П", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"ЧТОБЫ УТОЧНИТЬ",	"tone":"NEUTRAL", "option":3		,"additions":[{"list":["ЧТО"]}]},
-
-  {"id": "99", "group": "У", "groupTone": "У", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"ЧТОБЫ НЕЙТРАЛИЗОВАТЬ",	"tone":"NEUTRAL"	, "option":3,"additions":[{"list":["ЧТО","КОГО"]}   ]},
-
-  {"id": "100", "group": "Ф", "groupTone": "Ф", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"ПОБЛАГОДАРИВ",	"tone":"GREEN"	, "option":1	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["КОГО"]}   ]},
-
-  {"id": "101", "group": "Ц", "groupTone": "Ц", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"ЗАДУМАВШИСЬ"	,"tone":"NEUTRAL"	, "option":1	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["НАД_ЧЕМ"]}   ]},
-
-
-  {"id": "102", "group": "Ч", "groupTone": "Ч", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"ПЕРЕБИВ"	,"tone":"RED"	,         "option":1	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["ЧТО","КОГО"]}   ]},
-
-  {"id": "103", "group": "Щ", "groupTone": "Щ", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"УЛЫБНУВШИСЬ"	,"tone":"GREEN"	,   "option":1	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["КОМУ","КАКОМУ"]},{"list":["НА_ЧТО"]}]},
-
-  {"id": "104", "group": "Ы", "groupTone": "Ы", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"ПАРОДИРУЯ"	,"tone":"YELLOW"	,   "option":2	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["ЧТО","КОГО"]}   ]},
-
-  {"id": "105", "group": "Э", "groupTone": "Э", "type":"ОБСТОЯТЕЛЬСТВО",	"name":"НАВИСАЯ",	"tone":"RED"	,         "option":2	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["НАД_КЕМ"]}   ]},
-
-  {"id": "106", "group": "Ю", "groupTone": "Ю", "type":"ОБСТОЯТЕЛЬСТВО", "name":	"ОБНИМАЯ"	,"tone":"GREEN"	       , "option":2	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["КОГО"]}   ]}
+  {"id": "86", "group": "Д", "groupTone": "ё", "type":"НАРЕЧИЕ","name":"НЕЙТРАЛЬНО","tone":"NEUTRAL" ,"additions":[{"list":["СТЕПЕНЬ"]}]}
 
 ]

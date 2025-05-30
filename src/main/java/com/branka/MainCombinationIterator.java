@@ -1,5 +1,6 @@
 package com.branka;
 
+import static com.branka.BrankaJsonMapper.readBrankaDeck;
 import static com.branka.CombinationChecker.choicesCountMap;
 import static com.branka.CombinationChecker.printCountMapDividedInPercent;
 
@@ -8,15 +9,29 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class MainCombinationIterator {
 
     public static void main(String[] args) throws IOException {
-        int N = 8;
-        List<Card> deck = initializeDeck(N);
-        var substrings = CombinationChecker.loadSubstringsFromFile("substrings.txt");
+        //        int N = 8;
+        //        List<Card> deck = initializeDeck(N);
+
+        var deck = readBrankaDeck(new ObjectMapper(), "branka_deck_without_adverbs.json");
+//        branka_converted_type_deck.json
+        int N = deck.size();
+        var substrings = CombinationChecker.loadSubstringsFromFile("substrings_merged_verbs.txt").stream()
+            .filter(line -> !line.startsWith("--"))
+            .map(CombinationChecker::sortString)
+            .collect(Collectors.toList());
+
         CombinationChecker.initializeCountMap(substrings);
         int K = 6; // Размер комбинации
+        long totalCombinations = combination(N, K);
+        System.out.printf("Всего комбинаций из %d по %d: %d%n", N, K, totalCombinations);
+
         System.out.println("Начало подсчета валидных комбинаций...");
         long startTime = System.currentTimeMillis();
         long validCombinations = countValidCombinations(deck, K, substrings);
@@ -24,7 +39,6 @@ public class MainCombinationIterator {
         double elapsedSeconds = (endTime - startTime) / 1000.0;
         System.out.println("Подсчет завершен.");
 
-        long totalCombinations = combination(N, K);
         System.out.println("Всего комбинаций: " + totalCombinations);
         System.out.println("Валидных комбинаций: " + validCombinations);
         System.out.println("Вероятность наличия вариантов комбинаций: ");
@@ -47,7 +61,7 @@ public class MainCombinationIterator {
      * @param substrings
      * @return Количество комбинаций, прошедших проверку.
      */
-    public static long countValidCombinations(List<Card> deck, int K, List<String> substrings) {
+    public static long countValidCombinations(List<WordCard> deck, int K, List<String> substrings) {
         long validCount = 0;
         int N = deck.size();
         // Индексы для генерации комбинаций
@@ -62,7 +76,7 @@ public class MainCombinationIterator {
             // Собираем текущую комбинацию
             List<Character> currentCombination = new ArrayList<>();
             for (int index : indices) {
-                currentCombination.add(deck.get(index).letter);
+                currentCombination.add(deck.get(index).getGroup());
             }
             // Сортируем буквы по алфавиту
             Collections.sort(currentCombination);
@@ -71,7 +85,7 @@ public class MainCombinationIterator {
                 validCount++;
             }
             processed++;
-            // Отчет каждые 10 миллион комбинаций
+            // Отчет каждые X комбинаций
             if (processed - lastReport >= 10_000_000) {
                 lastReport = processed;
                 double progress = (double) processed / total * 100;

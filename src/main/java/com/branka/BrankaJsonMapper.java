@@ -25,7 +25,7 @@ public class BrankaJsonMapper {
     public static void main(String[] args) throws IOException {
         var objectMapper = new ObjectMapper();
 
-        Option option = Option.READ_AND_CONVERT_TO_TYPE_AND_TONES_BRANKA_DECK;
+        var option = Option.READ_AND_CONVERT_TO_TYPE_ONLY_BRANKA_DECK;
         switch (option) {
             case WRITE_BRANKA_DECK:
                 write(objectMapper, BrankaCardsTestSet.cardsSet, "branka_deck.json");
@@ -36,7 +36,7 @@ public class BrankaJsonMapper {
             case READ_AND_CONVERT_TO_TYPE_ONLY_BRANKA_DECK: {
                 //                var readDeck = BrankaCardsTestSet.cardsSet;
                 var readDeck = readBrankaDeck(objectMapper, "branka_deck.json");
-                var convertedDeck = readDeck.stream().map(ToCardConverter.typeConvert()).collect(Collectors.toList());
+                var convertedDeck = readDeck.stream().map(ToCardConverter.typeToGroupConvert(readDeck)).collect(Collectors.toList());
                 write(objectMapper, convertedDeck, "branka_converted_type_deck.json");
             }
             break;
@@ -55,7 +55,7 @@ public class BrankaJsonMapper {
     static List<WordCard> readBrankaDeck(ObjectMapper objectMapper, String jsonFileName) throws IOException {
         File orCreateFileJson = getOrCreateFileJson(jsonFileName);
         List<WordCard> content = objectMapper.readValue(orCreateFileJson, new TypeReference<>() {});
-        System.out.println(content.size());
+        System.out.println("Deck size: " + content.size());
         return content;
     }
 
@@ -70,6 +70,19 @@ public class BrankaJsonMapper {
         try {
             var writer = new BufferedWriter(new FileWriter(file));
             writer.write(content);
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void writeToFile(File file, List<String> content) {
+        try {
+            var writer = new BufferedWriter(new FileWriter(file));
+            for (String s : content) {
+                writer.write(s);
+                writer.newLine();
+            }
             writer.close();
         } catch (IOException e) {
             throw new RuntimeException(e);

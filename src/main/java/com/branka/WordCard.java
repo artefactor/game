@@ -15,7 +15,7 @@ public class WordCard {
     private Character group;
     private Character groupTone;
     private Tone tone;
-    private Type type;
+    private String type;
     private Integer option;
     private String name;
     private List<Addition> additions;
@@ -26,26 +26,26 @@ public class WordCard {
     @NoArgsConstructor
     public static class Addition {
 
-        List<Type> list;
+        List<String> list;
 
         static Addition add(Type word) {
-            return new Addition(List.of(word));
+            return new Addition(List.of(word.name()));
         }
 
         static Addition add(Type word1, Type word2) {
-            return new Addition(List.of(word1, word2));
+            return new Addition(List.of(word1.name(), word2.name()));
         }
     }
 
     @NoArgsConstructor
     public static class MultiAddition extends WordCard.Addition {
 
-        public MultiAddition(List<WordCard.Type> list) {
+        public MultiAddition(List<String> list) {
             super(list);
         }
 
         static Addition addMulti(Type word) {
-            return new MultiAddition(List.of(word));
+            return new MultiAddition(List.of(word.name()));
         }
     }
 

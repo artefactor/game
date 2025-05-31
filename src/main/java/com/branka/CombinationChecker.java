@@ -44,10 +44,10 @@ public class CombinationChecker {
      * @param s исходная строка
      * @return отсортированная строка
      */
-     static String sortString(String s) {
-         if (s.startsWith("--")){
-             return s;
-         }
+    static String sortString(String s) {
+        if (s.startsWith("--")) {
+            return s;
+        }
         char[] chars = s.toCharArray();
         Arrays.sort(chars);
         return new String(chars);
@@ -66,59 +66,85 @@ public class CombinationChecker {
             substringsCountMap.put(substr, 0);
         }
     }
+
     static int k = 0;
+
     /**
      * Проверяет комбинацию и обновляет countMap.
      *
-     * @param combination отсортированный и валидный список символов
-     * @param substrings
+     * @param cardSet                       отсортированный и валидный список символов
      */
-    static boolean checkCombination(List<Character> combination, List<String> substrings) {
+    static boolean checkCombination(List<Character> cardSet, List<WordCard> currentWordCardSetCombination, List<String> substrings,
+        Map<String, Map<Character, Integer>> mapSubstring) {
         boolean print = !true;
         if (print)        System.out.print(k++ + "\t");
-        if (print) {System.out.print(combination);}
+        if (print) {System.out.print(cardSet);}
         // Подсчитываем частоту каждого символа в комбинации
-        Map<Character, Integer> combinationCount = countCharacters(combination);
+        Map<Character, Integer> combinationCount = countCharacters(cardSet);
         int choicesCount = 0;
-        // Обрабатываем каждую подстроку
 
+        boolean PRINT_FORMED = false;
+        List<String> formed = PRINT_FORMED ? new ArrayList<>() : null;
+        // Обрабатываем каждую подстроку
         for (String substr : substrings) {
-            // Подсчитываем частоту символов в подстроке
-            Map<Character, Integer> substrCount = countCharacters(substr);
-            // Проверяем, можно ли составить подстроку из комбинации
-            boolean canForm = true;
-            for (Map.Entry<Character, Integer> entry : substrCount.entrySet()) {
-                char ch = entry.getKey();
-                int required = entry.getValue();
-                int available = combinationCount.getOrDefault(ch, 0);
-                if (available < required) {
-                    canForm = false;
-                    break;
-                }
-            }
-            if (canForm) {
+            if (checkIfCanForm(mapSubstring, print, combinationCount, substr)) {
+                // TODO здесь нужно проверить окрасы фраз. И какого тона фразы можно сложить. И какой длины. Есть ли выбор
                 choicesCount++;
-                // Вычисляем количество способов
-                long ways = 1;
-                for (Map.Entry<Character, Integer> entry : substrCount.entrySet()) {
-                    char ch = entry.getKey();
-                    int required = entry.getValue();
-                    int available = combinationCount.getOrDefault(ch, 0);
-                    ways *= combinationCount(available, required);
+                if (PRINT_FORMED) {
+                    formed.add(substr);
                 }
-                if (print)        System.out.printf(" '%s':%s", substr, ways);
-                // Обновляем countMap, приводя к int (предполагается, что значение не превышает Integer.MAX_VALUE)
-                substringsCountMap.put(substr, substringsCountMap.get(substr) + (int) ways);
             }
         }
+        // сколько вариантов можно сделать в данной комбинации (нароре) карт
         var res = choicesCountMap.getOrDefault(choicesCount, new AtomicInteger(0));
         choicesCountMap.put(choicesCount, res);
         res.incrementAndGet();
 
+        if (PRINT_FORMED) {
+            if (choicesCount > 27) {
+                System.out.println("=====");
+                System.out.println(cardSet);
+                for (var f : formed) {
+                    System.out.println(f);
+                }
+                System.out.println("=====");
+            }
+        }
         boolean anyOption = choicesCount > 0;
         if (print)        System.out.print(";  choices:" + choicesCount + " = " + anyOption);
         if (print)        System.out.println();
         return anyOption;
+    }
+
+    private static boolean checkIfCanForm(Map<String, Map<Character, Integer>> mapSubstring, boolean print,
+        Map<Character, Integer> combinationCount, String substr) {
+        // Подсчитываем частоту символов в подстроке
+        var substrCount = mapSubstring.get(substr);
+        // Проверяем, можно ли составить подстроку из комбинации
+        for (var entry : substrCount.entrySet()) {
+            char ch = entry.getKey();
+            int required = entry.getValue();
+            int available = combinationCount.getOrDefault(ch, 0);
+            if (available < required) {
+                return false;
+            }
+        }
+        boolean NEED_CACL_WAYS = false;
+        if (NEED_CACL_WAYS) {
+            // Вычисляем количество способов
+            int ways = 1;
+            for (var entry : substrCount.entrySet()) {
+                char ch = entry.getKey();
+                int required = entry.getValue();
+                int available = combinationCount.getOrDefault(ch, 0);
+                ways *= combinationCount(available, required);
+            }
+            if (print) System.out.printf(" '%s':%s", substr, ways);
+        }
+        // + ways - если каждый вариант считаем в рамках одной комбинации (наборе) карт
+        // + 1  - если просто в рамках одной комбинации (встречается или нет)
+        substringsCountMap.put(substr, substringsCountMap.get(substr) + 1);
+        return true;
     }
 
     /**
@@ -141,10 +167,9 @@ public class CombinationChecker {
      * @param s строка
      * @return карта частот
      */
-    private static Map<Character, Integer> countCharacters(String s) {
+     static Map<Character, Integer> countCharacters(String s) {
         Map<Character, Integer> countMap = new HashMap<>();
         for (char ch : s.toCharArray()) {
-
             countMap.put(ch, countMap.getOrDefault(ch, 0) + 1);
         }
         return countMap;
@@ -179,24 +204,31 @@ public class CombinationChecker {
 
     static void printCountMapDividedInPercent(Map<?, ? extends Number> substringsCountMap1, long total) {
         substringsCountMap1.forEach(
-            (key, value) -> System.out.println(
-                key + " -\t" + value + "\t ( " + (value.longValue() * 100 / total) + " % )"));
+            (key, value) -> {
+                if (value.longValue() > 0) {
+                    System.out.println(
+                        key + " -\t" + value + "\t ( " + (value.longValue() * 100 / total) + " % )");
+                }
+            });
     }
 
     // Пример использования
     public static void main(String[] args) {
         // Предопределённый список подстрок
         final List<String> substrings = Arrays.asList("ABH", "A", "AD", "ADD", "AH");
+        HashMap<String, Map<Character, Integer>> mapSubstring = new HashMap<>();
 
         // Инициализируем карту нулями для каждой подстроки
         for (String substr : substrings) {
             substringsCountMap.put(substr, 0);
+            // Подсчитываем частоту символов в подстроке
+            mapSubstring.put(substr, countCharacters(substr));
         }
 
         // Пример 1
         System.out.println("Пример 1:");
         List<Character> combination1 = Arrays.asList('A', 'C', 'D', 'D', 'E');
-        checkCombination(combination1, substrings);
+        checkCombination(combination1, new ArrayList<>(), substrings, mapSubstring);
         printCountMap(substringsCountMap);
         // Сброс карты для следующего примера
         resetCountMap(substrings);
@@ -204,7 +236,7 @@ public class CombinationChecker {
         // Пример 2
         System.out.println("Пример 2:");
         List<Character> combination2 = Arrays.asList('A', 'D', 'D', 'D', 'E', 'H', 'K');
-        checkCombination(combination2, substrings);
+        checkCombination(combination2, new ArrayList<>(), substrings, mapSubstring);
         printCountMap(substringsCountMap);
     }
 

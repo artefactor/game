@@ -2,12 +2,15 @@ package com.branka;
 
 import static com.branka.BrankaJsonMapper.readBrankaDeck;
 import static com.branka.CombinationChecker.choicesCountMap;
+import static com.branka.CombinationChecker.countCharacters;
 import static com.branka.CombinationChecker.printCountMapDividedInPercent;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -19,17 +22,17 @@ public class MainCombinationIterator {
         //        int N = 8;
         //        List<Card> deck = initializeDeck(N);
 
-        var deck = readBrankaDeck(new ObjectMapper(), "branka_deck_without_adverbs.json");
+        var deck = readBrankaDeck(new ObjectMapper(), "branka_deck.json");
 //        branka_converted_type_deck.json
         int N = deck.size();
-        var substrings = CombinationChecker.loadSubstringsFromFile("substrings_merged_verbs.txt").stream()
+        var substrings = CombinationChecker.loadSubstringsFromFile("substrings_full.txt").stream()
             .filter(line -> !line.startsWith("--"))
             .map(CombinationChecker::sortString)
             .collect(Collectors.toList());
 
         CombinationChecker.initializeCountMap(substrings);
         int K = 6; // Размер комбинации
-        long totalCombinations = combination(N, K);
+        long totalCombinations = combinationCount(N, K);
         System.out.printf("Всего комбинаций из %d по %d: %d%n", N, K, totalCombinations);
 
         System.out.println("Начало подсчета валидных комбинаций...");
@@ -41,7 +44,7 @@ public class MainCombinationIterator {
 
         System.out.println("Всего комбинаций: " + totalCombinations);
         System.out.println("Валидных комбинаций: " + validCombinations);
-        System.out.println("Вероятность наличия вариантов комбинаций: ");
+        System.out.println("Вероятность наличия вариантов в комбинациях: ");
         printCountMapDividedInPercent(CombinationChecker.choicesCountMap, totalCombinations);
         var sum = choicesCountMap.values().stream().reduce((a, b) -> new AtomicInteger(a.addAndGet(b.intValue()))).get()
             .longValue();
@@ -49,7 +52,7 @@ public class MainCombinationIterator {
         System.out.println("");
         System.out.printf("Время выполнения: %.2f секунд%n", elapsedSeconds);
 
-        var allCombos = CombinationChecker.substringsCountMap.values().stream().reduce((a, b)-> a+ b).get();
+        var allCombos = CombinationChecker.substringsCountMap.values().stream().reduce(Integer::sum).get();
         printCountMapDividedInPercent(CombinationChecker.substringsCountMap, allCombos);
     }
 
@@ -62,6 +65,12 @@ public class MainCombinationIterator {
      * @return Количество комбинаций, прошедших проверку.
      */
     public static long countValidCombinations(List<WordCard> deck, int K, List<String> substrings) {
+        Map<String, Map<Character, Integer>> mapSubstring = new HashMap<>();
+        for (String substr : substrings) {
+            // Подсчитываем частоту символов в подстроке
+            mapSubstring.put(substr, countCharacters(substr));
+        }
+
         long validCount = 0;
         int N = deck.size();
         // Индексы для генерации комбинаций
@@ -69,19 +78,22 @@ public class MainCombinationIterator {
         for (int i = 0; i < K; i++) {
             indices[i] = i;
         }
-        long total = combination(N, K);
+        long total = combinationCount(N, K);
         long processed = 0;
         long lastReport = 0;
         while (indices[0] <= N - K) {
             // Собираем текущую комбинацию
-            List<Character> currentCombination = new ArrayList<>();
+            List<Character> currentCardSetCombination = new ArrayList<>();
+            List<WordCard> currentWordCardSetCombination = new ArrayList<>();
             for (int index : indices) {
-                currentCombination.add(deck.get(index).getGroup());
+                WordCard wordCard = deck.get(index);
+                currentCardSetCombination.add(wordCard.getGroup());
+                currentWordCardSetCombination.add(wordCard);
             }
             // Сортируем буквы по алфавиту
-            Collections.sort(currentCombination);
+            Collections.sort(currentCardSetCombination);
             // Вызываем функцию проверки
-            if (checkCombination(currentCombination, substrings)) {
+            if (checkCombination(currentCardSetCombination, currentWordCardSetCombination, substrings, mapSubstring)) {
                 validCount++;
             }
             processed++;
@@ -115,7 +127,7 @@ public class MainCombinationIterator {
      * @param k Размер выборки.
      * @return Значение C(n, k).
      */
-    private static long combination(int n, int k) {
+    private static long combinationCount(int n, int k) {
         if (k > n) {
             return 0;
         }
@@ -133,12 +145,13 @@ public class MainCombinationIterator {
     /**
      * Функция проверки комбинации. Здесь вы реализуете логику проверки.
      *
-     * @param combination Отсортированная по алфавиту комбинация букв.
+     * @param cardSet                       Отсортированная по алфавиту комбинация букв.
      * @param substrings
      * @return true, если комбинация валидна, иначе false.
      */
-    private static boolean checkCombination(List<Character> combination, List<String> substrings) {
-        return CombinationChecker.checkCombination(combination, substrings);
+    private static boolean checkCombination(List<Character> cardSet, List<WordCard> currentWordCardSetCombination, List<String> substrings,
+        Map<String, Map<Character, Integer>> mapSubstring) {
+        return CombinationChecker.checkCombination(cardSet, currentWordCardSetCombination, substrings, mapSubstring);
     }
 
     /**

@@ -52,7 +52,7 @@ public class MainCombinationIterator {
         System.out.println("");
         System.out.printf("Время выполнения: %.2f секунд%n", elapsedSeconds);
 
-        var allCombos = CombinationChecker.substringsCountMap.values().stream().reduce(Integer::sum).get();
+        var allCombos = CombinationChecker.substringsCountMap.values().stream().reduce(Long::sum).get();
         printCountMapDividedInPercent(CombinationChecker.substringsCountMap, allCombos);
     }
 

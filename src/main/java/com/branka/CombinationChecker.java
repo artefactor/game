@@ -54,7 +54,7 @@ public class CombinationChecker {
     }
 
     // Карта для подсчёта количества способов для каждой подстроки
-    static final Map<String, Integer> substringsCountMap = new HashMap<>();
+    static final Map<String, Long> substringsCountMap = new HashMap<>();
     static final Map<Integer, AtomicInteger> choicesCountMap = new HashMap<>();
 
     /**
@@ -63,7 +63,7 @@ public class CombinationChecker {
     static void initializeCountMap(List<String> substrings) {
         substringsCountMap.clear();
         for (String substr : substrings) {
-            substringsCountMap.put(substr, 0);
+            substringsCountMap.put(substr, 0L);
         }
     }
 
@@ -220,7 +220,7 @@ public class CombinationChecker {
 
         // Инициализируем карту нулями для каждой подстроки
         for (String substr : substrings) {
-            substringsCountMap.put(substr, 0);
+            substringsCountMap.put(substr, 0L);
             // Подсчитываем частоту символов в подстроке
             mapSubstring.put(substr, countCharacters(substr));
         }
@@ -245,7 +245,7 @@ public class CombinationChecker {
      */
     private static void resetCountMap(List<String> substrings) {
         for (String substr : substrings) {
-            substringsCountMap.put(substr, 0);
+            substringsCountMap.put(substr, 0L);
         }
     }
 }

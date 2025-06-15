@@ -1,4 +1,4 @@
-package com.branka;
+package com.branka.statistic;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -7,13 +7,14 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.branka.WordCard;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
 public class StatisticsHelper {
 
-    static void countUnique(List<WordCard> cards) {
+    public static void countUnique(List<WordCard> cards) {
         var uniqueCardCounts = cards.stream()
             .collect(Collectors.groupingBy(
                 StatisticsHelper::group,                    // Классификатор

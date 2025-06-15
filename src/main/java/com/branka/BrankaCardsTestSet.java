@@ -28,19 +28,19 @@ public class BrankaCardsTestSet {
             add(Type.НАРЕЧИЕ),
             add(Type.КОГО, Type.ЧТО),
             add(Type.ЧЕМ)
-        ), addMulti(Type.ОБСТОЯТЕЛЬСТВО)
+        ), addMulti(Type.ОБСТОЯТЕЛЬСТВО),false
         ),
-        new WordCard(1,'A','B', Tone.RED, Type.ГЛАГОЛ.name(), 1, "name", of(
+        new WordCard(2,'A','B', Tone.RED, Type.ГЛАГОЛ.name(), 1, "name", of(
             add(Type.НАРЕЧИЕ),
             add(Type.НАД_КЕМ, Type.НАД_ЧЕМ),
             add(Type.ЧЕМ)
-        ), addMulti(Type.ОБСТОЯТЕЛЬСТВО)
+        ), addMulti(Type.ОБСТОЯТЕЛЬСТВО), false
         ),
-        new WordCard(1,'A','C', Tone.RED, Type.ГЛАГОЛ.name(), 1, "name", of(
+        new WordCard(3,'A','C', Tone.RED, Type.ГЛАГОЛ.name(), 1, "name", of(
             add(Type.НАРЕЧИЕ),
             add(Type.КОМУ, Type.КАКОМУ),
             add(Type.ЧЕМ)
-        ), addMulti(Type.ОБСТОЯТЕЛЬСТВО)
+        ), addMulti(Type.ОБСТОЯТЕЛЬСТВО), false
 
         )
     );

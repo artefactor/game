@@ -1,5 +1,7 @@
 package com.branka;
 
+import static java.util.function.Predicate.not;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -8,6 +10,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.branka.statistic.StatisticsHelper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -55,6 +58,7 @@ public class BrankaJsonMapper {
     static List<WordCard> readBrankaDeck(ObjectMapper objectMapper, String jsonFileName) throws IOException {
         File orCreateFileJson = getOrCreateFileJson(jsonFileName);
         List<WordCard> content = objectMapper.readValue(orCreateFileJson, new TypeReference<>() {});
+        content = content.stream().filter(not(WordCard::isSkip)).collect(Collectors.toList());
         System.out.println("Deck size: " + content.size());
         return content;
     }

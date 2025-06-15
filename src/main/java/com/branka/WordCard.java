@@ -20,6 +20,7 @@ public class WordCard {
     private String name;
     private List<Addition> additions;
     private Addition multiAddition;
+    private boolean skip;
 
     @Data
     @AllArgsConstructor

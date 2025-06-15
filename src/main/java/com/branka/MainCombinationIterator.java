@@ -4,16 +4,23 @@ import static com.branka.BrankaJsonMapper.readBrankaDeck;
 import static com.branka.CombinationChecker.choicesCountMap;
 import static com.branka.CombinationChecker.countCharacters;
 import static com.branka.CombinationChecker.printCountMapDividedInPercent;
+import static com.branka.CombinationChecker.sortByValues;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+import com.branka.statistic.ToneCount;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class MainCombinationIterator {
@@ -22,18 +29,26 @@ public class MainCombinationIterator {
         //        int N = 8;
         //        List<Card> deck = initializeDeck(N);
 
-        var deck = readBrankaDeck(new ObjectMapper(), "branka_deck.json");
+        var deck = readBrankaDeck(new ObjectMapper(), "branka_deck_test.json");
 //        branka_converted_type_deck.json
         int N = deck.size();
+        Set<Character> usedLetters = deck.stream().map(WordCard::getGroup).collect(Collectors.toSet());
         var substrings = CombinationChecker.loadSubstringsFromFile("substrings_full.txt").stream()
             .filter(line -> !line.startsWith("--"))
+            .filter(line -> line.chars()
+                .allMatch(c -> usedLetters.contains((char) c)))
             .map(CombinationChecker::sortString)
             .collect(Collectors.toList());
-
+        // могут повторяться, мы сделаем уникальными
+        substrings = new ArrayList<>(new TreeSet<>(substrings));
+        assertEquals(substrings.size(), new HashSet<>(substrings).size(), "should be unique");
+        System.out.printf("Проверяем %,d уникальных подстрок ...%n" , substrings.size());
         CombinationChecker.initializeCountMap(substrings);
+        ToneCount.initToneMap(6);
+
         int K = 6; // Размер комбинации
         long totalCombinations = combinationCount(N, K);
-        System.out.printf("Всего комбинаций из %d по %d: %d%n", N, K, totalCombinations);
+        System.out.printf("Всего комбинаций из %d по %d: %,d%n", N, K, totalCombinations);
 
         System.out.println("Начало подсчета валидных комбинаций...");
         long startTime = System.currentTimeMillis();
@@ -41,19 +56,32 @@ public class MainCombinationIterator {
         long endTime = System.currentTimeMillis();
         double elapsedSeconds = (endTime - startTime) / 1000.0;
         System.out.println("Подсчет завершен.");
+        System.out.printf("Время выполнения: %.2f секунд%n", elapsedSeconds);
+        System.out.println();
 
-        System.out.println("Всего комбинаций: " + totalCombinations);
-        System.out.println("Валидных комбинаций: " + validCombinations);
+        System.out.printf("Всего комбинаций: %,d%n" , totalCombinations);
+        System.out.printf("Валидных комбинаций: %,d%n" , validCombinations);
+        System.out.println();
         System.out.println("Вероятность наличия вариантов в комбинациях: ");
         printCountMapDividedInPercent(CombinationChecker.choicesCountMap, totalCombinations);
         var sum = choicesCountMap.values().stream().reduce((a, b) -> new AtomicInteger(a.addAndGet(b.intValue()))).get()
             .longValue();
-        assert sum == totalCombinations;
-        System.out.println("");
-        System.out.printf("Время выполнения: %.2f секунд%n", elapsedSeconds);
+        assertEquals(sum, totalCombinations, "should sum equals");
+        System.out.println();
+
+        System.out.println("Вероятность наличия вариантов по тону в комбинациях: ");
+        printCountMapDividedInPercent(CombinationChecker.choicesToneCountMap, totalCombinations);
+        System.out.println();
 
         var allCombos = CombinationChecker.substringsCountMap.values().stream().reduce(Long::sum).get();
-        printCountMapDividedInPercent(CombinationChecker.substringsCountMap, allCombos);
+        System.out.printf("Распределение %,d комбинаций: %n", allCombos);
+        printCountMapDividedInPercent(sortByValues(CombinationChecker.substringsCountMap), allCombos);
+        System.out.printf("%n%nВероятность розыгрыша комбинации из %,d: %n", totalCombinations);
+        printCountMapDividedInPercent(sortByValues(CombinationChecker.substringsCountMap), totalCombinations);
+
+        System.out.printf("%n%nВероятность розыгрыша тонов из %,d: %n", totalCombinations);
+        var sortedToneMap  = ToneCount.sort(ToneCount.toneCountMap);
+        printCountMapDividedInPercent(sortedToneMap, totalCombinations);
     }
 
     /**
@@ -98,10 +126,10 @@ public class MainCombinationIterator {
             }
             processed++;
             // Отчет каждые X комбинаций
-            if (processed - lastReport >= 10_000_000) {
+            if (processed - lastReport >= 100_000) {
                 lastReport = processed;
                 double progress = (double) processed / total * 100;
-                System.out.printf("Обработано комбинаций: %d (%.2f%%)%n", processed, progress);
+                System.out.printf("Обработано комбинаций: %,d (%.2f%%)%n", processed, progress);
             }
             // Генерация следующей комбинации
             // Алгоритм генерации следующей комбинации (лексикографический порядок)

@@ -1,15 +1,30 @@
 package com.branka;
 
+import static com.branka.statistic.ToneCombinations.countTonesInCombinations;
+import static com.branka.statistic.ToneCombinations.generateAllToneCombinations;
+import static com.branka.statistic.ToneCount.classifySingleCombination;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import com.branka.statistic.ToneCount;
+import lombok.Data;
 
 public class CombinationChecker {
 
@@ -56,6 +71,7 @@ public class CombinationChecker {
     // Карта для подсчёта количества способов для каждой подстроки
     static final Map<String, Long> substringsCountMap = new HashMap<>();
     static final Map<Integer, AtomicInteger> choicesCountMap = new HashMap<>();
+    static final Map<Integer, Long> choicesToneCountMap = new HashMap<>();
 
     /**
      * Инициализирует countMap нулями для каждой подстроки.
@@ -65,55 +81,137 @@ public class CombinationChecker {
         for (String substr : substrings) {
             substringsCountMap.put(substr, 0L);
         }
+        assertEquals(substrings.size(), substringsCountMap.size(), "should be the same");
     }
 
     static int k = 0;
 
+    static boolean PRINT_COMBINATION = !true;
+    static boolean PRINT_TONES = !true;
+    static boolean PRINT_FORMED = !true;
+
     /**
      * Проверяет комбинацию и обновляет countMap.
      *
-     * @param cardSet                       отсортированный и валидный список символов
+     * @param cardSet отсортированный и валидный список символов
      */
-    static boolean checkCombination(List<Character> cardSet, List<WordCard> currentWordCardSetCombination, List<String> substrings,
+    static boolean checkCombination(List<Character> cardSet, List<WordCard> currentWordCardSetCombination,
+        List<String> substrings,
         Map<String, Map<Character, Integer>> mapSubstring) {
-        boolean print = !true;
-        if (print)        System.out.print(k++ + "\t");
-        if (print) {System.out.print(cardSet);}
+
+        if (PRINT_COMBINATION) {
+            System.out.print("№ " + k++ + ".\t");
+        }
+        if (PRINT_COMBINATION) {
+            System.out.print(cardSet);
+        }
         // Подсчитываем частоту каждого символа в комбинации
         Map<Character, Integer> combinationCount = countCharacters(cardSet);
         int choicesCount = 0;
 
-        boolean PRINT_FORMED = false;
+        var tones = new HashSet<ToneCount>();
+
         List<String> formed = PRINT_FORMED ? new ArrayList<>() : null;
         // Обрабатываем каждую подстроку
         for (String substr : substrings) {
-            if (checkIfCanForm(mapSubstring, print, combinationCount, substr)) {
-                // TODO здесь нужно проверить окрасы фраз. И какого тона фразы можно сложить. И какой длины. Есть ли выбор
+            if (checkIfCanForm(mapSubstring, PRINT_COMBINATION, combinationCount, substr)) {
                 choicesCount++;
                 if (PRINT_FORMED) {
                     formed.add(substr);
                 }
+                var options = findOptions(currentWordCardSetCombination, mapSubstring.get(substr));
+                tones.addAll(options);
             }
         }
-        // сколько вариантов можно сделать в данной комбинации (нароре) карт
+        // сколько вариантов можно сделать в данной комбинации (наборе) карт
         var res = choicesCountMap.getOrDefault(choicesCount, new AtomicInteger(0));
         choicesCountMap.put(choicesCount, res);
         res.incrementAndGet();
 
+        // сколько вариантов по тонам можно сделать в данной комбинации (наборе) карт
+        for (ToneCount tone : tones) {
+            var resTone = ToneCount.toneCountMap.getOrDefault(tone, 0);
+            ToneCount.toneCountMap.put(tone, ++resTone);
+        }
+
+        Set<String> uniqueCombinationTones = new HashSet<>();
+        tones.forEach(d -> uniqueCombinationTones.add(classifySingleCombination(d)));
+        int tonesOptions = uniqueCombinationTones.size();
+        Long comboToneCount = choicesToneCountMap.getOrDefault(tonesOptions, 0L);
+        choicesToneCountMap.put(tonesOptions, ++ comboToneCount);
+
+        boolean anyOption = choicesCount > 0;
+        if (PRINT_COMBINATION) {
+            System.out.print(";  choices:" + choicesCount + " = " + anyOption);
+        }
         if (PRINT_FORMED) {
-            if (choicesCount > 27) {
-                System.out.println("=====");
-                System.out.println(cardSet);
-                for (var f : formed) {
-                    System.out.println(f);
+            if (choicesCount > 9) {
+                System.out.println();
+                System.out.println("\t=================================");
+                if (!PRINT_COMBINATION) {
+                    System.out.println("\t\t\t" + cardSet);
                 }
-                System.out.println("=====");
+                for (var f : formed) {
+                    System.out.println("\t-\t\t" + f);
+                }
+                System.out.print("\t=================================");
             }
         }
-        boolean anyOption = choicesCount > 0;
-        if (print)        System.out.print(";  choices:" + choicesCount + " = " + anyOption);
-        if (print)        System.out.println();
+        if (PRINT_COMBINATION) {
+            System.out.println();
+        }
         return anyOption;
+    }
+
+    private static Collection<ToneCount> findOptions(List<WordCard> currentWordCardSetCombination,
+        Map<Character, Integer> charUsedCount) {
+        Map<Character, Collection<WordCard.Tone>> charToneMap = new HashMap<>(charUsedCount.size());
+        if (PRINT_TONES) {
+            System.out.println();
+            for (WordCard wordCard : currentWordCardSetCombination) {
+                System.out.print(wordCard.getGroup() + ": " + wordCard.getTone() + "; ");
+            }
+        }
+        if (PRINT_TONES) {
+            System.out.println();
+            System.out.println(charUsedCount);
+        }
+        for (var key : charUsedCount.keySet()) {
+            if (charUsedCount.get(key) == 1) {
+                charToneMap.put(key, new HashSet<>());
+            } else {
+                charToneMap.put(key, new ArrayList<>());
+            }
+        }
+        for (var card : currentWordCardSetCombination) {
+            if (charUsedCount.containsKey(card.getGroup())) {
+                charToneMap.get(card.getGroup()).add(card.getTone());
+            }
+        }
+        List<Map<Character, List<WordCard.Tone>>> allCombinations =
+            generateAllToneCombinations(charUsedCount, charToneMap);
+        Collection<ToneCount> counted =
+            countTonesInCombinations(allCombinations).stream().map(ToneCount::toToneCount).collect(Collectors.toSet());
+        if (PRINT_TONES) {
+            System.out.println("Count: " + allCombinations.size());
+            int i = 0;
+            for (ToneCount toneCount : counted) {
+                i++;
+                System.out.println(i + ": " + toneCount + " - " + classifySingleCombination(toneCount));
+            }
+            Set<String> uniqueCombinationTones = new HashSet<>();
+            counted.forEach(d -> uniqueCombinationTones.add(classifySingleCombination(d)));
+            System.out.println("Уникальных вариатов:" + uniqueCombinationTones.size() + ": " + uniqueCombinationTones
+                + "\n");
+        }
+        return counted;
+    }
+
+    @Data
+    static class UniqueCardTone {
+
+        private final Character group;
+        private final WordCard.Tone tone;
     }
 
     private static boolean checkIfCanForm(Map<String, Map<Character, Integer>> mapSubstring, boolean print,
@@ -139,7 +237,9 @@ public class CombinationChecker {
                 int available = combinationCount.getOrDefault(ch, 0);
                 ways *= combinationCount(available, required);
             }
-            if (print) System.out.printf(" '%s':%s", substr, ways);
+            if (print) {
+                System.out.printf(" '%s':%s", substr, ways);
+            }
         }
         // + ways - если каждый вариант считаем в рамках одной комбинации (наборе) карт
         // + 1  - если просто в рамках одной комбинации (встречается или нет)
@@ -167,7 +267,7 @@ public class CombinationChecker {
      * @param s строка
      * @return карта частот
      */
-     static Map<Character, Integer> countCharacters(String s) {
+    static Map<Character, Integer> countCharacters(String s) {
         Map<Character, Integer> countMap = new HashMap<>();
         for (char ch : s.toCharArray()) {
             countMap.put(ch, countMap.getOrDefault(ch, 0) + 1);
@@ -202,12 +302,25 @@ public class CombinationChecker {
         substringsCountMap1.forEach((key, value) -> System.out.println(key + " - " + value));
     }
 
-    static void printCountMapDividedInPercent(Map<?, ? extends Number> substringsCountMap1, long total) {
-        substringsCountMap1.forEach(
+    static Map<?, ? extends Number> sortByValues(Map<String, Long> unsortedMap) {
+        Map<String, Long> sortedMap = unsortedMap.entrySet().stream()
+            .sorted(Map.Entry.comparingByValue(Comparator.comparingLong(value -> value)))
+            .collect(Collectors.toMap(
+                Map.Entry::getKey,
+                Map.Entry::getValue,
+                (oldVal, newVal) -> oldVal,
+                LinkedHashMap::new
+            ));
+        return sortedMap;
+    }
+
+    static void printCountMapDividedInPercent(Map<?, ? extends Number> map, long total) {
+        map.forEach(
             (key, value) -> {
                 if (value.longValue() > 0) {
-                    System.out.println(
-                        key + " -\t" + value + "\t ( " + (value.longValue() * 100 / total) + " % )");
+                    var printKey = key.toString();
+                    String format = "| %-" + (printKey.length() > 12 ? 42 : 15) + "s | %" + 10 + "d | %" + 4 + "d %% |";
+                    System.out.printf((format) + "%n", printKey, value.intValue(), (value.longValue() * 100 / total));
                 }
             });
     }

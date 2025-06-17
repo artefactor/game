@@ -126,7 +126,8 @@ public class MainCombinationIterator {
             }
             processed++;
             // Отчет каждые X комбинаций
-            if (processed - lastReport >= 1_000_000) {
+            var percentil = total / 20;
+            if (processed - lastReport >= percentil) {
                 lastReport = processed;
                 double progress = (double) processed / total * 100;
                 System.out.printf("Обработано комбинаций: %,d (%.2f%%)%n", processed, progress);

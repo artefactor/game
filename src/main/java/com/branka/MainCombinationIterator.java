@@ -29,7 +29,7 @@ public class MainCombinationIterator {
         //        int N = 8;
         //        List<Card> deck = initializeDeck(N);
 
-        var deck = readBrankaDeck(new ObjectMapper(), "branka_deck_test.json");
+        var deck = readBrankaDeck(new ObjectMapper(), "ref_branka_deck.json");
 //        branka_converted_type_deck.json
         int N = deck.size();
         Set<Character> usedLetters = deck.stream().map(WordCard::getGroup).collect(Collectors.toSet());
@@ -126,7 +126,7 @@ public class MainCombinationIterator {
             }
             processed++;
             // Отчет каждые X комбинаций
-            if (processed - lastReport >= 100_000) {
+            if (processed - lastReport >= 1_000_000) {
                 lastReport = processed;
                 double progress = (double) processed / total * 100;
                 System.out.printf("Обработано комбинаций: %,d (%.2f%%)%n", processed, progress);

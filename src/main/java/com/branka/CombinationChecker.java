@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.branka.statistic.ToneCount;
@@ -71,7 +70,7 @@ public class CombinationChecker {
     // Карта для подсчёта количества способов для каждой подстроки
     static final Map<String, Long> substringsCountMap = new HashMap<>();
     static final Map<Integer, AtomicInteger> choicesCountMap = new HashMap<>();
-    static final Map<Integer, Long> choicesToneCountMap = new HashMap<>();
+    static final Map<Integer, Map<Set<String>, Long>> choicesToneCountMap = new HashMap<>();
 
     /**
      * Инициализирует countMap нулями для каждой подстроки.
@@ -137,8 +136,11 @@ public class CombinationChecker {
         Set<String> uniqueCombinationTones = new HashSet<>();
         tones.forEach(d -> uniqueCombinationTones.add(classifySingleCombination(d)));
         int tonesOptions = uniqueCombinationTones.size();
-        Long comboToneCount = choicesToneCountMap.getOrDefault(tonesOptions, 0L);
-        choicesToneCountMap.put(tonesOptions, ++ comboToneCount);
+
+        var comboToneCount = choicesToneCountMap.getOrDefault(tonesOptions, new HashMap<>());
+        choicesToneCountMap.put(tonesOptions, comboToneCount);
+        var count = comboToneCount.getOrDefault(uniqueCombinationTones, 0L);
+        comboToneCount.put(uniqueCombinationTones, ++count);
 
         boolean anyOption = choicesCount > 0;
         if (PRINT_COMBINATION) {
@@ -319,8 +321,8 @@ public class CombinationChecker {
             (key, value) -> {
                 if (value.longValue() > 0) {
                     var printKey = key.toString();
-                    String format = "| %-" + (printKey.length() > 12 ? 42 : 15) + "s | %" + 10 + "d | %" + 4 + "d %% |";
-                    System.out.printf((format) + "%n", printKey, value.intValue(), (value.longValue() * 100 / total));
+                    String format = "| %-" + (printKey.length() > 12 ? 42 : 15) + "s | %," + 10 + "d | %" + 4 + "d %% |%n";
+                    System.out.printf(format, printKey, value.intValue(), (value.longValue() * 100 / total));
                 }
             });
     }

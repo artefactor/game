@@ -1,0 +1,85 @@
+[
+  {"id": "1", "group": "A", "groupTone": "A", "type":"ГЛАГОЛ", "name":"ПОГЛУМИЛСЯ"      ,"tone": "RED"	,	"additions":[{"list":["НАРЕЧИЕ"]},{"list":["НАД_КЕМ","НАД_ЧЕМ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "2", "group": "A", "groupTone": "A", "type":"ГЛАГОЛ", "name":"ПОИЗДЕВАЛСЯ"     ,"tone": "RED"	,	"additions":[{"list":["НАРЕЧИЕ"]},{"list":["НАД_КЕМ","НАД_ЧЕМ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "3", "group": "A", "groupTone": "a", "type":"ГЛАГОЛ", "name":"СЪЯЗВИЛ"         ,"tone":"YELLOW"	,	"additions":[{"list":["НАРЕЧИЕ"]},{"list":["НАД_КЕМ","НАД_ЧЕМ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "4", "group": "A", "groupTone": "a", "type":"ГЛАГОЛ", "name":"НАСМЕХНУЛСЯ"     ,"tone":"YELLOW"	,	"additions":[{"list":["НАРЕЧИЕ"]},{"list":["НАД_КЕМ","НАД_ЧЕМ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "6", "group": "A", "groupTone": "b", "type":"ГЛАГОЛ", "name":"ПОДШУТИЛ"        ,"tone":"NEUTRAL",	"additions":[{"list":["НАРЕЧИЕ"]},{"list":["НАД_КЕМ","НАД_ЧЕМ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "7", "group": "A", "groupTone": "b", "type":"ГЛАГОЛ", "name":"ПОСМЕЯЛСЯ"       ,"tone":"NEUTRAL"	,	"additions":[{"list":["НАРЕЧИЕ"]},{"list":["НАД_КЕМ","НАД_ЧЕМ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+
+  {"id": "8", "group":  "D", "groupTone": "D", "type":"ГЛАГОЛ",	"name":"ПРОКОММЕНТИРОВАЛ" ,	"tone":"NEUTRAL"  ,"additions":[{"list":["НАРЕЧИЕ"]},{"list":["КОГО","ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "9", "group":  "D", "groupTone": "d", "type":"ГЛАГОЛ",	"name":"ПОДАВИЛ" ,	"tone": "RED"             ,"additions":[{"list":["НАРЕЧИЕ"]},{"list":["КОГО","ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "10", "group": "D", "groupTone": "E", "type":"ГЛАГОЛ",	"name":"ВЫСМЕЯЛ" ,	"tone":"YELLOW"           ,"additions":[{"list":["НАРЕЧИЕ"]},{"list":["КОГО","ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "11", "group": "D", "groupTone": "e", "type":"ГЛАГОЛ",	"name":"ВЫСМЕЯЛ" ,	"tone":"GREEN"           ,"additions":[{"list":["НАРЕЧИЕ"]},{"list":["КОГО","ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+
+  {"id": "12", "group": "F", "groupTone": "F", "type":"ГЛАГОЛ",	"name":"ПРИСТЫДИЛ" ,"tone": "RED"		,"additions":[{"list":["НАРЕЧИЕ"]},{"list":["КОГО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "13", "group": "F", "groupTone": "F", "type":"ГЛАГОЛ",	"name":"ПОРУГАЛ" ,	"tone": "RED"		,"additions":[{"list":["НАРЕЧИЕ"]},{"list":["КОГО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "14", "group": "F", "groupTone": "f", "type":"ГЛАГОЛ",	"name":"ЗАПУГАЛ" ,	"tone": "YELLOW"		,"additions":[{"list":["НАРЕЧИЕ"]},{"list":["КОГО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "15", "group": "F", "groupTone": "f", "type":"ГЛАГОЛ",	"name":"ОБРУГАЛ" ,	"tone": "YELLOW"		,"additions":[{"list":["НАРЕЧИЕ"]},{"list":["КОГО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "16", "group": "F", "groupTone": "G", "type":"ГЛАГОЛ",	"name":"ПОДДЕРЖАЛ", "tone":	"GREEN"	,"additions":[{"list":["НАРЕЧИЕ"]},{"list":["КОГО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "17", "group": "F", "groupTone": "G", "type":"ГЛАГОЛ",	"name":"ПОХВАЛИЛ" , "tone":	"GREEN"	,"additions":[{"list":["НАРЕЧИЕ"]},{"list":["КОГО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "18", "group": "F", "groupTone": "g", "type":"ГЛАГОЛ",	"name":"ПОХВАЛИЛ" , "tone":	"NEUTRAL"	,"additions":[{"list":["НАРЕЧИЕ"]},{"list":["КОГО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "19", "group": "F", "groupTone": "g", "type":"ГЛАГОЛ",	"name":"ПОХВАЛИЛ" , "tone":	"NEUTRAL"	,"additions":[{"list":["НАРЕЧИЕ"]},{"list":["КОГО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+
+  {"skip": false, "id": "32", "group": "L", "groupTone": "L", "type":"ГЛАГОЛ",	"name":"ПАРИРОВАЛ" ,	"tone":"NEUTRAL"	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"skip": false, "id": "33", "group": "L", "groupTone": "L", "type":"ГЛАГОЛ",	"name":"ОПРОТЕСТОВАЛ","tone":"NEUTRAL"	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"skip": false, "id": "34", "group": "L", "groupTone": "L", "type":"ГЛАГОЛ",	"name":"ОСПОРИЛ" ,    "tone":"NEUTRAL"	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"skip": false, "id": "35", "group": "L", "groupTone": "L", "type":"ГЛАГОЛ",	"name":"ПОЯСНИЛ" ,    "tone":"NEUTRAL"	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+
+
+  {"id": "23", "group": "H", "groupTone": "J", "type":"ГЛАГОЛ",	"name":"ВОЗРАЗИЛ" ,	"tone":"NEUTRAL"		,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["КОМУ","КАКОМУ"]},{"list":["НА_ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "23", "group": "H", "groupTone": "J", "type":"ГЛАГОЛ",	"name":"ВОЗРАЗИЛ" ,	"tone":"NEUTRAL"		,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["КОМУ","КАКОМУ"]},{"list":["НА_ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+
+  {"id": "24", "group": "I", "groupTone": "I", "type":"ГЛАГОЛ",	"name":"НАГРУБИЛ" ,	 "tone": "RED"		,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["КОМУ","КАКОМУ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "24", "group": "I", "groupTone": "I", "type":"ГЛАГОЛ",	"name":"НАГРУБИЛ" ,	 "tone": "RED"		,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["КОМУ","КАКОМУ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "27", "group": "I", "groupTone": "l", "type":"ГЛАГОЛ",	"name":"НАМЕКНУЛ" ,	 "tone":"NEUTRAL"	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["КОМУ","КАКОМУ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "27", "group": "I", "groupTone": "l", "type":"ГЛАГОЛ",	"name":"НАМЕКНУЛ" ,	 "tone":"NEUTRAL"	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["КОМУ","КАКОМУ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+
+  {"id": "29", "group": "K", "groupTone": "K", "type":"ГЛАГОЛ",	"name":"РАЗОЗЛИЛСЯ" ,	"tone": "RED"	, "additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["НА_ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "29", "group": "K", "groupTone": "K", "type":"ГЛАГОЛ",	"name":"РАЗОЗЛИЛСЯ" ,	"tone": "RED"	, "additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["НА_ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "29", "group": "K", "groupTone": "K", "type":"ГЛАГОЛ",	"name":"РАЗОЗЛИЛСЯ" ,	"tone": "RED"	, "additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["НА_ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+
+
+  {"id": "41", "group": "N", "groupTone": "N", "type":"НАД_КЕМ","name":"НАД КЕМ",	"tone":"GREEN"},
+  {"id": "44", "group": "N", "groupTone": "o", "type":"НАД_КЕМ","name":"НАД КЕМ",	"tone":"NEUTRAL"},
+  {"id": "42", "group": "N", "groupTone": "n", "type":"НАД_КЕМ","name":"НАД КЕМ",  "tone":"YELLOW"},
+  {"id": "43", "group": "N", "groupTone": "O", "type":"НАД_КЕМ","name":"НАД КЕМ",  "tone":"RED"},
+
+  {"id": "45", "group": "P", "groupTone": "P", "type":"НАД_ЧЕМ","name":"НАД ЧЕМ", 	"tone":"GREEN"    , "additions":[{"list":["КОГО"]}]},
+  {"id": "46", "group": "P", "groupTone": "p", "type":"НАД_ЧЕМ","name":"НАД ЧЕМ",  "tone":"YELLOW"		, "additions":[{"list":["КОГО"]}]},
+  {"id": "47", "group": "P", "groupTone": "R", "type":"НАД_ЧЕМ","name":"НАД ЧЕМ",  "tone":"NEUTRAL"	, "additions":[{"list":["КОГО"]}]},
+  {"id": "48", "group": "P", "groupTone": "r", "type":"НАД_ЧЕМ","name":"НАД ЧЕМ",  "tone":"RED"      , "additions":[{"list":["КОГО"]}]},
+
+  {"id": "53", "group": "S", "groupTone": "t", "type":"КОМУ", 	"name":"КОМУ"	,  "tone":"GREEN"		, "additions":[{"list":["КАКОМУ"]}]},
+  {"id": "52", "group": "S", "groupTone": "T", "type":"КОМУ", 	"name":"КОМУ",	"tone":"NEUTRAL"		, "additions":[{"list":["КАКОМУ"]}]},
+  {"id": "51", "group": "S", "groupTone": "s", "type":"КОМУ", 	"name":"КОМУ",	"tone":"YELLOW"		, "additions":[{"list":["КАКОМУ"]}]},
+  {"id": "49", "group": "S", "groupTone": "S", "type":"КОМУ", 	"name":"КОМУ",	"tone":"RED"		, "additions":[{"list":["КАКОМУ"]}]},
+
+  {"id": "55", "group": "U", "groupTone": "U", "type":"КАКОМУ", "name":	"КАКОМУ"	,"tone":"GREEN"	, "additions":[{"list":["СТЕПЕНЬ"]}]},
+  {"id": "57", "group": "U", "groupTone": "u", "type":"КАКОМУ", "name":	"КАКОМУ",	"tone":"NEUTRAL"	, "additions":[{"list":["СТЕПЕНЬ"]}]},
+  {"id": "56", "group": "U", "groupTone": "Z", "type":"КАКОМУ", "name":	"КАКОМУ",	"tone":"YELLOW"	, "additions":[{"list":["СТЕПЕНЬ"]}]},
+  {"id": "57", "group": "U", "groupTone": "z", "type":"КАКОМУ", "name":	"КАКОМУ",	"tone":"RED"	, "additions":[{"list":["СТЕПЕНЬ"]}]},
+
+  {"id": "58", "group": "7", "groupTone": "7", "type":"ЧТО", "name":"ЗАМЕЧАНИЕ"	,"tone":"NEUTRAL"		, "additions":[{"list":["КОГО"]}]},
+  {"id": "59", "group": "7", "groupTone": "8", "type":"ЧТО", "name":"ВОЗРАЖЕНИЕ",	"tone":"NEUTRAL"		, "additions":[{"list":["КОГО"]}]},
+  {"id": "60", "group": "7", "groupTone": "9", "type":"ЧТО", "name":"РУГАТЕЛЬСТВА"	,"tone":"NEUTRAL"		, "additions":[{"list":["КОГО"]}]},
+  {"id": "60", "group": "7", "groupTone": "0", "type":"ЧТО", "name":"РУГАТЕЛЬСТВА"	,"tone":"NEUTRAL"		, "additions":[{"list":["КОГО"]}]},
+
+  {"id": "61", "group": "V", "groupTone": "V", "type":"КОГО", "name":	"БОЛВАНА",	"tone":"RED"},
+  {"id": "64", "group": "V", "groupTone": "v", "type":"КОГО","name":"ДИВАННОГО ФИЛОСОФА" ,	"tone":"YELLOW"},
+  {"id": "65", "group": "V", "groupTone": "W", "type":"КОГО","name":"ОППОНЕНТА"	,   "tone":"NEUTRAL"},
+  {"id": "67", "group": "V", "groupTone": "w", "type":"КОГО","name":"ДРУГА"	,   "tone":"GREEN"},
+
+  {"id": "69", "group": "X", "groupTone": "X", "type":"НА_ЧТО","name":"НА СПЕКТАКЛЬ",	                "tone":"RED"	  , "option":1, "additions":[{"list":["КОГО"]}]},
+  {"id": "71", "group": "X", "groupTone": "x", "type":"НА_ЧТО","name":"НА РЕЧЕВЫЕ ПОТУГИ",	          "tone":"YELLOW"	, "option":1, "additions":[{"list":["КОГО"]}]},
+  {"id": "70", "group": "X", "groupTone": "Y", "type":"НА_ЧТО","name":"НА БРЕД"	,                     "tone":"NEUTRAL"	  , "option":1, "additions":[{"list":["КОГО"]}]},
+  {"id": "72", "group": "X", "groupTone": "y", "type":"НА_ЧТО","name":"НА ОРИГИНАЛЬНУЮ ТОЧКУ ЗРЕНИЯ", "tone":"GREEN"  , "option":1, "additions":[{"list":["КОГО"]}]},
+
+  {"id": "80", "group": "Д", "groupTone": "Д", "type":"НАРЕЧИЕ","name":"БЕСПОЩАДНО"	,"tone":"RED"	    ,"additions":[{"list":["СТЕПЕНЬ"]}]},
+  {"id": "81", "group": "Д", "groupTone": "Д", "type":"НАРЕЧИЕ","name":"БЕСПОЩАДНО"	,"tone":"RED"	    ,"additions":[{"list":["СТЕПЕНЬ"]}]},
+  {"id": "82", "group": "Д", "groupTone": "д", "type":"НАРЕЧИЕ","name":"БЛЕСТЯЩЕ"	,"tone":"YELLOW"	  ,"additions":[{"list":["СТЕПЕНЬ"]}]},
+  {"id": "83", "group": "Д", "groupTone": "д", "type":"НАРЕЧИЕ","name":"БЛЕСТЯЩЕ"	,"tone":"YELLOW"	  ,"additions":[{"list":["СТЕПЕНЬ"]}]},
+  {"id": "84", "group": "Д", "groupTone": "ё", "type":"НАРЕЧИЕ","name":"НЕЙТРАЛЬНО","tone":"NEUTRAL" ,"additions":[{"list":["СТЕПЕНЬ"]}]},
+  {"id": "85", "group": "Д", "groupTone": "ё", "type":"НАРЕЧИЕ","name":"НЕЙТРАЛЬНО","tone":"NEUTRAL" ,"additions":[{"list":["СТЕПЕНЬ"]}]},
+  {"id": "86", "group": "Д", "groupTone": "Ё", "type":"НАРЕЧИЕ","name":"ТАКТИЧНО"	,"tone":"GREEN"	    ,"additions":[{"list":["СТЕПЕНЬ"]}]},
+  {"id": "87", "group": "Д", "groupTone": "Ё", "type":"НАРЕЧИЕ","name":"ТАКТИЧНО"	,"tone":"GREEN"	    ,"additions":[{"list":["СТЕПЕНЬ"]}]}
+]

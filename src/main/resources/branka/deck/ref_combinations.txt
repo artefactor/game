@@ -1,0 +1,69 @@
+Deck size: 72
+| A   | RED        |             ГЛАГОЛ |  НАД_КЕМ","НАД_ЧЕМ, 8
+| A   | YELLOW     |             ГЛАГОЛ |
+| A   | NEUTRAL    |             ГЛАГОЛ |
+| A   | GREEN      |             ГЛАГОЛ |
+
+| D   | NEUTRAL    |             ГЛАГОЛ | "КОГО","ЧТО",  4
+| D   | RED        |             ГЛАГОЛ |
+| D   | YELLOW     |             ГЛАГОЛ |
+| D   | GREEN      |             ГЛАГОЛ |
+
+| F   | RED        |             ГЛАГОЛ |  "КОГО", 8
+| F   | YELLOW     |             ГЛАГОЛ |
+| F   | GREEN      |             ГЛАГОЛ |
+| F   | NEUTRAL    |             ГЛАГОЛ |
+
+| L   | NEUTRAL    |             ГЛАГОЛ | "ЧТО", 4
+
+| H   | RED        |             ГЛАГОЛ | "КОМУ","КАКОМУ", "НА_ЧТО", 4
+| H   | YELLOW     |             ГЛАГОЛ |
+| H   | NEUTRAL    |             ГЛАГОЛ |
+| H   | GREEN      |             ГЛАГОЛ |
+
+| I   | RED        |             ГЛАГОЛ | "КОМУ","КАКОМУ", 4
+| I   | YELLOW     |             ГЛАГОЛ |
+| I   | NEUTRAL    |             ГЛАГОЛ |
+| I   | GREEN      |             ГЛАГОЛ |
+
+| K   | RED        |             ГЛАГОЛ | "НА_ЧТО", 4
+| K   | YELLOW     |             ГЛАГОЛ |
+| K   | NEUTRAL    |             ГЛАГОЛ |
+| K   | GREEN      |             ГЛАГОЛ |
+
+| N   | GREEN      |            НАД_КЕМ |
+| N   | NEUTRAL    |            НАД_КЕМ |
+| N   | YELLOW     |            НАД_КЕМ |
+| N   | RED        |            НАД_КЕМ |
+
+| P   | GREEN      |            НАД_ЧЕМ |
+| P   | YELLOW     |            НАД_ЧЕМ |
+| P   | NEUTRAL    |            НАД_ЧЕМ |
+| P   | RED        |            НАД_ЧЕМ |
+
+| S   | GREEN      |               КОМУ |
+| S   | NEUTRAL    |               КОМУ |
+| S   | YELLOW     |               КОМУ |
+| S   | RED        |               КОМУ |
+
+| U   | GREEN      |             КАКОМУ |
+| U   | NEUTRAL    |             КАКОМУ |
+| U   | YELLOW     |             КАКОМУ |
+| U   | RED        |             КАКОМУ |
+
+| 7   | NEUTRAL    |                ЧТО |
+
+| V   | RED        |               КОГО |
+| V   | YELLOW     |               КОГО |
+| V   | NEUTRAL    |               КОГО |
+| V   | GREEN      |               КОГО |
+
+| X   | RED        |             НА_ЧТО |
+| X   | YELLOW     |             НА_ЧТО |
+| X   | NEUTRAL    |             НА_ЧТО |
+| X   | GREEN      |             НА_ЧТО |
+
+| Д   | RED        |            НАРЕЧИЕ |  8
+| Д   | YELLOW     |            НАРЕЧИЕ |
+| Д   | NEUTRAL    |            НАРЕЧИЕ |
+| Д   | GREEN      |            НАРЕЧИЕ |

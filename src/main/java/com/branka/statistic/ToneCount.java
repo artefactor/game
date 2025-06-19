@@ -15,6 +15,13 @@ import lombok.Data;
 @Data
 public class ToneCount {
 
+    protected static final String ЖЕЛТАЯ = "желтая";
+    protected static final String КРАСНО_ЖЕЛТАЯ = "красно-желтая";
+    protected static final String НЕЙТРАЛЬНАЯ = "нейтральная";
+    protected static final String ЗЕЛЕНАЯ = "зеленая";
+    protected static final String КРАСНАЯ = "красная";
+    protected static final String НЕОПРЕДЕЛЕННАЯ = "неопределенная";
+
     int red;
     int green;
     int yellow;
@@ -38,35 +45,35 @@ public class ToneCount {
 
         // Правило 4а - имеет приоритет над другими
         if (green == red && red > 0) {
-            return "желтая";
+            return ЖЕЛТАЯ;
         }
         // Правило 4
-        if (yellow >= 2 && neutral >= 0 && red == 0 && green == 0) {
-            return "желтая";
-        }
-
-        // Правило 3а
-        if (red >= 2 && yellow > 0 && neutral >= 0 && green == 0) {
-            return "красно-желтая";
-        }
-
-        // Правило 1
-        if (red == 0 && green == 0 && yellow == 0 && neutral > 0) {
-            return "нейтральная";
-        }
-
-        // Правило 2
-        if (green >= 2 && neutral >= 0 && red == 0 && yellow == 0) {
-            return "зеленая";
+        if (yellow >= 2 && red == 0 && green == 0) {
+            return ЖЕЛТАЯ;
         }
 
         // Правило 3
-        if (red >= 2 && neutral >= 0 && green == 0 && yellow == 0) {
-            return "красная";
+        if (red >= 2 && green == 0 && yellow == 0) {
+            return КРАСНАЯ;
+        }
+
+        // Правило 3а
+        if (red >= 2 && yellow > 0 && green == 0) {
+            return КРАСНО_ЖЕЛТАЯ;
+        }
+
+        // Правило 1. Может нейтральных можно делать  и просто >0
+        if (red == 0 && green == 0 && yellow == 0 && neutral >= 2) {
+            return НЕЙТРАЛЬНАЯ;
+        }
+
+        // Правило 2
+        if (green >= 2 && red == 0 && yellow == 0) {
+            return ЗЕЛЕНАЯ;
         }
 
         // Если ни одно из правил не подошло
-        return "неопределенная";
+        return НЕОПРЕДЕЛЕННАЯ;
     }
 
     public static Map<ToneCount, Integer> sort(Map<ToneCount, Integer> unsortedMap) {

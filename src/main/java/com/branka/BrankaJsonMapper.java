@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,18 +29,19 @@ public class BrankaJsonMapper {
     public static void main(String[] args) throws IOException {
         var objectMapper = new ObjectMapper();
 
-        var option = Option.READ_AND_CONVERT_TO_TYPE_ONLY_BRANKA_DECK;
+        var option = Option.READ_BRANKA_DECK;
         switch (option) {
             case WRITE_BRANKA_DECK:
                 write(objectMapper, BrankaCardsTestSet.cardsSet, "branka_deck.json");
                 break;
             case READ_BRANKA_DECK:
-                StatisticsHelper.countUnique(readBrankaDeck(objectMapper, "branka_deck.json"));
+                StatisticsHelper.countUnique(readBrankaDeck(objectMapper, "ref_branka_deck.json"));
                 break;
             case READ_AND_CONVERT_TO_TYPE_ONLY_BRANKA_DECK: {
                 //                var readDeck = BrankaCardsTestSet.cardsSet;
                 var readDeck = readBrankaDeck(objectMapper, "branka_deck.json");
-                var convertedDeck = readDeck.stream().map(ToCardConverter.typeToGroupConvert(readDeck)).collect(Collectors.toList());
+                var convertedDeck =
+                    readDeck.stream().map(ToCardConverter.typeToGroupConvert(readDeck)).collect(Collectors.toList());
                 write(objectMapper, convertedDeck, "branka_converted_type_deck.json");
             }
             break;
@@ -60,6 +62,14 @@ public class BrankaJsonMapper {
         List<WordCard> content = objectMapper.readValue(orCreateFileJson, new TypeReference<>() {});
         content = content.stream().filter(not(WordCard::isSkip)).collect(Collectors.toList());
         System.out.println("Deck size: " + content.size());
+        LinkedHashSet<Object> set = new LinkedHashSet<>();
+        for (var card : content) {
+            String format = "| %-" + 3 + "s | %-" + 10 + "s | %" + 18 + "s |";
+            set.add(String.format(format, card.getGroup(), card.getTone(), card.getType()));
+        }
+        for (var string : set) {
+            System.out.println(string);
+        }
         return content;
     }
 

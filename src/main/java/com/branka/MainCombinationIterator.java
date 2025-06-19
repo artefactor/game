@@ -8,7 +8,6 @@ import static com.branka.CombinationChecker.sortByValues;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -29,7 +28,7 @@ public class MainCombinationIterator {
         //        int N = 8;
         //        List<Card> deck = initializeDeck(N);
 
-        var deck = readBrankaDeck(new ObjectMapper(), "ref_branka_deck.json");
+        var deck = readBrankaDeck(new ObjectMapper(), "ref_branka_deck5.json");
 //        branka_converted_type_deck.json
         int N = deck.size();
         Set<Character> usedLetters = deck.stream().map(WordCard::getGroup).collect(Collectors.toSet());
@@ -70,8 +69,27 @@ public class MainCombinationIterator {
         System.out.println();
 
         System.out.println("Вероятность наличия вариантов по тону в комбинациях: ");
-        printCountMapDividedInPercent(CombinationChecker.choicesToneCountMap, totalCombinations);
+        Map<Integer, Map<Set<String>, Long>> choicesToneCountExpandedMap = CombinationChecker.choicesToneCountMap;
+        Map<Integer, Long> choicesToneCountMap = new HashMap<>();
+        for (Map.Entry<Integer, Map<Set<String>, Long>> entry : choicesToneCountExpandedMap.entrySet()) {
+            Integer key = entry.getKey();
+            Map<Set<String>, Long> innerMap = entry.getValue();
+            long sum1 = 0;
+            for (Long value : innerMap.values()) {
+                sum1 += value;
+            }
+            choicesToneCountMap.put(key, sum1);
+        }
+        printCountMapDividedInPercent(choicesToneCountMap, totalCombinations);
         System.out.println();
+        System.out.println("Развернуто:");
+        for (Map.Entry<Integer, Map<Set<String>, Long>> entry : choicesToneCountExpandedMap.entrySet()) {
+            System.out.println(entry.getKey() + ":");
+            Map<Set<String>, Long> t = entry.getValue();
+            for (Map.Entry<Set<String>, Long> e : t.entrySet()) {
+                System.out.println(" \t\t" + e.getKey() + " -  " + e.getValue());
+            }
+        }
 
         var allCombos = CombinationChecker.substringsCountMap.values().stream().reduce(Long::sum).get();
         System.out.printf("Распределение %,d комбинаций: %n", allCombos);

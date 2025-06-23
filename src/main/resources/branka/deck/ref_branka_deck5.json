@@ -31,8 +31,8 @@
 
   {"id": "24", "group": "I", "groupTone": "I", "type":"ГЛАГОЛ",	"name":"НАГРУБИЛ" ,	 "tone": "RED"		,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["КОМУ","КАКОМУ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
   {"id": "24", "group": "I", "groupTone": "I", "type":"ГЛАГОЛ",	"name":"НАГРУБИЛ" ,	 "tone": "RED"		,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["КОМУ","КАКОМУ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
-  {"id": "27", "group": "I", "groupTone": "l", "type":"ГЛАГОЛ",	"name":"НАМЕКНУЛ" ,	 "tone":"GREEN"	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["КОМУ","КАКОМУ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
-  {"id": "27", "group": "I", "groupTone": "l", "type":"ГЛАГОЛ",	"name":"НАМЕКНУЛ" ,	 "tone":"GREEN"	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["КОМУ","КАКОМУ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "27", "group": "I", "groupTone": "l", "type":"ГЛАГОЛ",	"name":"НАМЕКНУЛ" ,	 "tone":"NEUTRAL"	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["КОМУ","КАКОМУ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "27", "group": "I", "groupTone": "l", "type":"ГЛАГОЛ",	"name":"НАМЕКНУЛ" ,	 "tone":"NEUTRAL"	,"additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["КОМУ","КАКОМУ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
 
   {"id": "29", "group": "K", "groupTone": "K", "type":"ГЛАГОЛ",	"name":"РАЗОЗЛИЛСЯ" ,	"tone": "RED"	, "additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["НА_ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
   {"id": "29", "group": "K", "groupTone": "K", "type":"ГЛАГОЛ",	"name":"РАЗОЗЛИЛСЯ" ,	"tone": "RED"	, "additions":[{"list":["НАРЕЧИЕ"]} ,{"list":["НА_ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},

@@ -4,6 +4,7 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -67,11 +68,29 @@ public class WordCard {
     }
 
     public enum Tone {
-        RED,
-        GREEN,
-        YELLOW,
-        NEUTRAL,
-        ADDITIONAL,
+        RED(null),
+        GREEN(null),
+        YELLOW(null),
+        NEUTRAL(null),
+        ADDITIONAL(null),
+        // pairs
+        RED_OR_YELLOW(new Tone[] {RED, YELLOW}),
+        RED_OR_NEUTRAL(new Tone[] {RED, NEUTRAL}),
+        RED_OR_GREEN(new Tone[] {RED, GREEN}),
+        NEUTRAL_OR_GREEN(new Tone[] {GREEN, NEUTRAL}),
+        ;
+
+        @Getter
+        Tone[] doubles;
+
+        Tone(Tone[] doubles) {
+            this.doubles = doubles;
+        }
+
+        public boolean isDouble() {
+            return doubles != null;
+        }
+
     }
 
 }

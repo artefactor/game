@@ -75,9 +75,11 @@ public class WordCard {
         ADDITIONAL(null),
         // pairs
         RED_OR_YELLOW(new Tone[] {RED, YELLOW}),
+        NEUTRAL_OR_YELLOW(new Tone[] {NEUTRAL, YELLOW}),
+        GREEN_OR_YELLOW(new Tone[] {GREEN, YELLOW}),
         RED_OR_NEUTRAL(new Tone[] {RED, NEUTRAL}),
-        RED_OR_GREEN(new Tone[] {RED, GREEN}),
         NEUTRAL_OR_GREEN(new Tone[] {GREEN, NEUTRAL}),
+        RED_OR_GREEN(new Tone[] {RED, GREEN}),
         ;
 
         @Getter

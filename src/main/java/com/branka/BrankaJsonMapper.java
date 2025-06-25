@@ -61,6 +61,7 @@ public class BrankaJsonMapper {
         File orCreateFileJson = getOrCreateFileJson(jsonFileName);
         List<WordCard> content = objectMapper.readValue(orCreateFileJson, new TypeReference<>() {});
         content = content.stream().filter(not(WordCard::isSkip)).collect(Collectors.toList());
+        System.out.println("Reading file: " + jsonFileName);
         System.out.println("Deck size: " + content.size());
         LinkedHashSet<Object> set = new LinkedHashSet<>();
         for (var card : content) {

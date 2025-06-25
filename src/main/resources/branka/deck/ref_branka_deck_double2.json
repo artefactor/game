@@ -1,9 +1,9 @@
 [
-  {"id": "1", "group": "A", "groupTone": "A", "type":"ГЛАГОЛ", "name":"ПОГЛУМИЛСЯ"      ,"tone": "RED"	,	"additions":[{"list":["НАРЕЧИЕ"]},{"list":["НАД_КЕМ","НАД_ЧЕМ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "1", "group": "A", "groupTone": "A", "type":"ГЛАГОЛ", "name":"ПОГЛУМИЛСЯ"      ,"tone":"RED_OR_GREEN"	,	"additions":[{"list":["НАРЕЧИЕ"]},{"list":["НАД_КЕМ","НАД_ЧЕМ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
   {"id": "3", "group": "A", "groupTone": "a", "type":"ГЛАГОЛ", "name":"СЪЯЗВИЛ"         ,"tone":"RED_OR_YELLOW"	,	"additions":[{"list":["НАРЕЧИЕ"]},{"list":["НАД_КЕМ","НАД_ЧЕМ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
   {"id": "4", "group": "A", "groupTone": "a", "type":"ГЛАГОЛ", "name":"НАСМЕХНУЛСЯ"     ,"tone":"YELLOW"	,	"additions":[{"list":["НАРЕЧИЕ"]},{"list":["НАД_КЕМ","НАД_ЧЕМ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
   {"id": "6", "group": "A", "groupTone": "b", "type":"ГЛАГОЛ", "name":"ПОДШУТИЛ"        ,"tone":"NEUTRAL",	"additions":[{"list":["НАРЕЧИЕ"]},{"list":["НАД_КЕМ","НАД_ЧЕМ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
-  {"id": "6", "group": "A", "groupTone": "B", "type":"ГЛАГОЛ", "name":"ПОДШУТИЛ"        ,"tone":"NEUTRAL_OR_GREEN",	"additions":[{"list":["НАРЕЧИЕ"]},{"list":["НАД_КЕМ","НАД_ЧЕМ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
+  {"id": "6", "group": "A", "groupTone": "B", "type":"ГЛАГОЛ", "name":"ПОДШУТИЛ"        ,"tone":"NEUTRAL",	"additions":[{"list":["НАРЕЧИЕ"]},{"list":["НАД_КЕМ","НАД_ЧЕМ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
   {"id": "7", "group": "A", "groupTone": "B", "type":"ГЛАГОЛ", "name":"ПОСМЕЯЛСЯ"       ,"tone":"GREEN"	,	"additions":[{"list":["НАРЕЧИЕ"]},{"list":["НАД_КЕМ","НАД_ЧЕМ"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},
 
   {"id": "8", "group":  "D", "groupTone": "D", "type":"ГЛАГОЛ",	"name":"ПРОКОММЕНТИРОВАЛ" ,	"tone":"NEUTRAL"  ,"additions":[{"list":["НАРЕЧИЕ"]},{"list":["КОГО","ЧТО"]}],"multiAddition":{"list":["ОБСТОЯТЕЛЬСТВО"]}},

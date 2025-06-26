@@ -8,6 +8,8 @@ import static com.branka.CombinationChecker.sortByValues;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,7 +30,7 @@ public class MainCombinationIterator {
         //        int N = 8;
         //        List<Card> deck = initializeDeck(N);
 
-        var deck = readBrankaDeck(new ObjectMapper(), "ref_branka_deck5_doubleD.json");
+        var deck = readBrankaDeck(new ObjectMapper(), "ref_branka_deck5_doubleF.json");
 //        branka_converted_type_deck.json
         int N = deck.size();
         Set<Character> usedLetters = deck.stream().map(WordCard::getGroup).collect(Collectors.toSet());
@@ -148,7 +150,8 @@ public class MainCombinationIterator {
             if (processed - lastReport >= percentil) {
                 lastReport = processed;
                 double progress = (double) processed / total * 100;
-                System.out.printf("Обработано комбинаций: %,d (%.2f%%)%n", processed, progress);
+                System.out.printf("Обработано комбинаций: %,d (%.2f%%)%n" + LocalDateTime.now().format(
+                    DateTimeFormatter.ofPattern("hh:mm:ss")), processed, progress);
             }
             // Генерация следующей комбинации
             // Алгоритм генерации следующей комбинации (лексикографический порядок)

@@ -28,7 +28,7 @@ public class MainCombinationIterator {
         //        int N = 8;
         //        List<Card> deck = initializeDeck(N);
 
-        var deck = readBrankaDeck(new ObjectMapper(), "ref_branka_deck6_adv.json");
+        var deck = readBrankaDeck(new ObjectMapper(), "ref_branka_deck5_doubleD.json");
 //        branka_converted_type_deck.json
         int N = deck.size();
         Set<Character> usedLetters = deck.stream().map(WordCard::getGroup).collect(Collectors.toSet());

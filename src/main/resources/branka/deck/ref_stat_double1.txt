@@ -1,8 +1,8 @@
 Deck size: 66
 | A   | RED        |             ГЛАГОЛ |
-| A   | RED_OR_YELLOW |             ГЛАГОЛ |
+| A   | RED_OR_YELLOW |          ГЛАГОЛ |
+| A   | NEUTRAL_OR_GREEN |       ГЛАГОЛ |
 | A   | NEUTRAL    |             ГЛАГОЛ |
-| A   | NEUTRAL_OR_GREEN |             ГЛАГОЛ |
 | A   | GREEN      |             ГЛАГОЛ |
 | D   | NEUTRAL    |             ГЛАГОЛ |
 | D   | RED        |             ГЛАГОЛ |

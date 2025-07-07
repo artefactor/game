@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +24,7 @@ public class BrankaJsonMapper {
     enum Option {
         WRITE_BRANKA_DECK,
         READ_BRANKA_DECK,
+        READ_BRANKA_DECK_SIMPLE,
         READ_AND_CONVERT_TO_TYPE_ONLY_BRANKA_DECK,
         READ_AND_CONVERT_TO_TYPE_AND_TONES_BRANKA_DECK,
     }
@@ -35,7 +38,10 @@ public class BrankaJsonMapper {
                 write(objectMapper, BrankaCardsTestSet.cardsSet, "branka_deck.json");
                 break;
             case READ_BRANKA_DECK:
-                StatisticsHelper.countUnique(readBrankaDeck(objectMapper, "ref_branka_deck.json"));
+                StatisticsHelper.countUnique(readBrankaDeck(objectMapper, "ref_branka_deck5_doubleE.json"));
+                break;
+            case READ_BRANKA_DECK_SIMPLE:
+                readBrankaDeck(objectMapper, "ref_branka_deck5_doubleE.json");
                 break;
             case READ_AND_CONVERT_TO_TYPE_ONLY_BRANKA_DECK: {
                 //                var readDeck = BrankaCardsTestSet.cardsSet;
@@ -63,10 +69,10 @@ public class BrankaJsonMapper {
         content = content.stream().filter(not(WordCard::isSkip)).collect(Collectors.toList());
         System.out.println("Reading file: " + jsonFileName);
         System.out.println("Deck size: " + content.size());
-        LinkedHashSet<Object> set = new LinkedHashSet<>();
+        Collection<String> set = new LinkedHashSet<>();
         for (var card : content) {
-            String format = "| %-" + 3 + "s | %-" + 10 + "s | %" + 18 + "s |";
-            set.add(String.format(format, card.getGroup(), card.getTone(), card.getType()));
+            String format = "| %d| %-" + 3 + "s | %-" + 15 + "s | %" + 18 + "s |";
+            set.add(String.format(format, card.getId(), card.getGroup(), card.getTone(), card.getType()));
         }
         for (var string : set) {
             System.out.println(string);
